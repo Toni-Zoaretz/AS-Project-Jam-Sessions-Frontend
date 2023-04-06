@@ -1,26 +1,24 @@
 import api from "../api/api";
-import { useGlobalContext } from "../context/globalContext";
+import { useGlobalContext } from "../context/jamContext";
 
 function JamForm() {
-  const { formData, setFormData, setUsers } = useGlobalContext();
+  const { jamSessionFormData, setJamSessionFormData } = useGlobalContext();
 
   function handleChange(e) {
     const name = e.target.name;
     const value = e.target.value;
-    setFormData((prevFormData) => {
+    setJamSessionFormData((prevJamSessionFormData) => {
       return {
-        ...prevFormData,
+        ...prevJamSessionFormData,
         [name]: value,
       };
     });
   }
 
-  const getUsers = async () => {
+  const getJamSessions = async () => {
     try {
-      // setLoading(true);
-      const response = await api.get("/jam-user");
+      const response = await api.get("/jam-sessions");
       console.log(response.data);
-      // setUsers(response.data.data);
     } catch (error) {
       console.error(error);
     }
@@ -29,12 +27,13 @@ function JamForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await api.post("/jam-user", {
-        name: formData.name,
-        phoneNumber: formData.phoneNumber,
-        email: formData.email,
+      await api.post("/jam-sessions", {
+        jamSessionName: jamSessionFormData.jamSessionName,
+        instruments: jamSessionFormData.instruments,
+        address: jamSessionFormData.address,
+        date: jamSessionFormData.date,
       });
-      console.log(formData);
+      console.log(jamSessionFormData);
     } catch (error) {
       console.error(error);
     }
@@ -43,36 +42,71 @@ function JamForm() {
     //   phoneNumber: "",
     //   email: "",
     // });
-    getUsers();
+    getJamSessions();
   };
 
   return (
     <div>
       <form className="form" onSubmit={handleSubmit}>
-        <h2>Register</h2>
+        <h2>Create Your Own Jam Session!</h2>
         <input
           type="text"
-          name="name"
-          value={formData.name}
-          placeholder="Full Name"
+          name="jamSessionName"
+          value={jamSessionFormData.jamSessionName}
+          placeholder="Jam Session Name"
+          onChange={handleChange}
+        ></input>
+        <input
+          type="text"
+          name="instruments"
+          value={jamSessionFormData.instruments}
+          placeholder="instruments"
+          onChange={handleChange}
+        ></input>
+        <input
+          type="text"
+          name="address"
+          value={jamSessionFormData.address}
+          placeholder="St name"
           onChange={handleChange}
         ></input>
         <input
           type="number"
-          name="phoneNumber"
-          value={formData.phoneNumber}
-          placeholder="Phone Number"
+          name="address"
+          value={jamSessionFormData.address}
+          placeholder="St Number"
           onChange={handleChange}
         ></input>
         <input
-          type="email"
-          name="email"
-          value={formData.email}
+          type="number"
+          name="address"
+          value={jamSessionFormData.address}
+          placeholder="Zip Code"
+          onChange={handleChange}
+        ></input>
+        <input
+          type="text"
+          name="address"
+          value={jamSessionFormData.address}
+          placeholder="City Name"
+          onChange={handleChange}
+        ></input>
+        <input
+          type="text"
+          name="address"
+          value={jamSessionFormData.address}
+          placeholder="Country Name"
+          onChange={handleChange}
+        ></input>
+        <input
+          type="date"
+          name="date"
+          value={jamSessionFormData.date}
           placeholder="Email"
           onChange={handleChange}
         ></input>
         <button className="btn" type="submit">
-          Sign In
+          Create
         </button>
       </form>
     </div>

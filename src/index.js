@@ -4,12 +4,18 @@ import "./index.css";
 import App from "./App";
 
 import { GlobalContextProvider } from "./context/globalContext";
+import { UserContextProvider } from "./context/userContext";
+import { JamContextProvider } from "./context/jamContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <GlobalContextProvider>
-      <App />
-    </GlobalContextProvider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <GlobalContextProvider>
+    <UserContextProvider>
+      <JamContextProvider>
+        <App />
+      </JamContextProvider>
+    </UserContextProvider>
+  </GlobalContextProvider>
+  // </React.StrictMode>
 );

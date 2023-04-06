@@ -1,15 +1,15 @@
 import api from "../api/api";
-import { useGlobalContext } from "../context/globalContext";
+import { useGlobalContext } from "../context/userContext.js";
 
 function UserForm() {
-  const { formData, setFormData, setUser, user } = useGlobalContext();
+  const { userFormData, setUserFormData } = useGlobalContext();
 
   function handleChange(e) {
     const name = e.target.name;
     const value = e.target.value;
-    setFormData((prevFormData) => {
+    setUserFormData((prevUserFormData) => {
       return {
-        ...prevFormData,
+        ...prevUserFormData,
         [name]: value,
       };
     });
@@ -17,11 +17,8 @@ function UserForm() {
 
   const getUsers = async () => {
     try {
-      // setLoading(true);
       const response = await api.get("/jam-user");
       console.log(response.data);
-      // setUser(response.data);
-      console.log(user);
     } catch (error) {
       console.error(error);
     }
@@ -30,17 +27,15 @@ function UserForm() {
     event.preventDefault();
     try {
       const response = await api.post("/jam-user", {
-        name: formData.name,
-        phoneNumber: formData.phoneNumber,
-        email: formData.email,
+        name: userFormData.name,
+        phoneNumber: userFormData.phoneNumber,
+        email: userFormData.email,
       });
-      console.log(formData);
-      setUser(response.data);
-      console.log(user);
+      console.log(userFormData);
     } catch (error) {
       console.error(error);
     }
-    setFormData({
+    setUserFormData({
       name: "",
       phoneNumber: "",
       email: "",
@@ -55,21 +50,21 @@ function UserForm() {
         <input
           type="text"
           name="name"
-          value={formData.name}
+          value={userFormData.name}
           placeholder="Full Name"
           onChange={handleChange}
         ></input>
         <input
           type="number"
           name="phoneNumber"
-          value={formData.phoneNumber}
+          value={userFormData.phoneNumber}
           placeholder="Phone Number"
           onChange={handleChange}
         ></input>
         <input
           type="email"
           name="email"
-          value={formData.email}
+          value={userFormData.email}
           placeholder="Email"
           onChange={handleChange}
         ></input>

@@ -1,14 +1,8 @@
 import { useState, createContext, useContext } from "react";
 const GlobalContext = createContext();
 
-const GlobalContextProvider = ({ children }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    phoneNumber: "",
-    email: "",
-  });
-
-  const [jamInformation, setJamInformation] = useState({
+const JamContextProvider = ({ children }) => {
+  const [jamSessionFormData, setJamSessionFormData] = useState({
     jamSessionName: "",
     instruments: "",
     address: "",
@@ -23,10 +17,8 @@ const GlobalContextProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
-        formData,
-        setFormData,
-        jamInformation,
-        setJamInformation,
+        jamSessionFormData,
+        setJamSessionFormData,
       }}
     >
       {children}
@@ -38,4 +30,4 @@ export const useGlobalContext = () => {
   return useContext(GlobalContext);
 };
 
-export { GlobalContextProvider };
+export { JamContextProvider };
