@@ -5,12 +5,11 @@ const JamContextProvider = ({ children }) => {
   const [jamSessionFormData, setJamSessionFormData] = useState({
     jamSessionName: "",
     instruments: "",
-    address: "",
-    //St name
-    //nummber
-    //zipcode
-    //city
-    //country
+    streetName: "",
+    streetNumber: "",
+    cityName: "",
+    countryName: "",
+    zipcode: "",
     date: "",
   });
 

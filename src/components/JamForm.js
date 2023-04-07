@@ -26,22 +26,29 @@ function JamForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const address = `${jamSessionFormData.streetNumber} ${jamSessionFormData.streetName} St, ${jamSessionFormData.cityName}, ${jamSessionFormData.zipcode}, ${jamSessionFormData.countryName}`;
     try {
       await api.post("/jam-sessions", {
         jamSessionName: jamSessionFormData.jamSessionName,
         instruments: jamSessionFormData.instruments,
-        address: jamSessionFormData.address,
+        address,
         date: jamSessionFormData.date,
       });
-      console.log(jamSessionFormData);
     } catch (error) {
       console.error(error);
     }
-    // setFormData({
-    //   name: "",
-    //   phoneNumber: "",
-    //   email: "",
-    // });
+    setJamSessionFormData({
+      jamSessionName: "",
+      instruments: "",
+      streetName: "",
+      streetNumber: "",
+      cityName: "",
+      countryName: "",
+      zipcode: "",
+      date: "",
+    });
+    console.log(jamSessionFormData);
+    console.log(address);
     getJamSessions();
   };
 
@@ -65,36 +72,36 @@ function JamForm() {
         ></input>
         <input
           type="text"
-          name="address"
-          value={jamSessionFormData.address}
+          name="streetName"
+          value={jamSessionFormData.streetName}
           placeholder="St name"
           onChange={handleChange}
         ></input>
         <input
           type="number"
-          name="address"
-          value={jamSessionFormData.address}
+          name="streetNumber"
+          value={jamSessionFormData.streetNumber}
           placeholder="St Number"
           onChange={handleChange}
         ></input>
         <input
           type="number"
-          name="address"
-          value={jamSessionFormData.address}
+          name="zipcode"
+          value={jamSessionFormData.zipcode}
           placeholder="Zip Code"
           onChange={handleChange}
         ></input>
         <input
           type="text"
-          name="address"
-          value={jamSessionFormData.address}
+          name="cityName"
+          value={jamSessionFormData.cityName}
           placeholder="City Name"
           onChange={handleChange}
         ></input>
         <input
           type="text"
-          name="address"
-          value={jamSessionFormData.address}
+          name="countryName"
+          value={jamSessionFormData.countryName}
           placeholder="Country Name"
           onChange={handleChange}
         ></input>
