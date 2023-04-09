@@ -1,8 +1,9 @@
 import api from "../api/api";
-import { useGlobalContext } from "../context/userContext.js";
+import { useUserGlobalContext } from "../context/userContext.js";
 
-function UserForm() {
-  const { userFormData, setUserFormData } = useGlobalContext();
+function UserFormRegister() {
+  const { userFormData, setUserFormData, getCurrentUser } =
+    useUserGlobalContext();
 
   function handleChange(e) {
     const name = e.target.name;
@@ -15,14 +16,6 @@ function UserForm() {
     });
   }
 
-  const getUsers = async () => {
-    try {
-      const response = await api.get("/jam-user");
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -30,8 +23,9 @@ function UserForm() {
         name: userFormData.name,
         phoneNumber: userFormData.phoneNumber,
         email: userFormData.email,
+        password: userFormData.password,
       });
-      console.log(userFormData);
+      getCurrentUser();
     } catch (error) {
       console.error(error);
     }
@@ -39,14 +33,14 @@ function UserForm() {
       name: "",
       phoneNumber: "",
       email: "",
+      password: "",
     });
-    getUsers();
   };
 
   return (
     <div>
       <form className="form" onSubmit={handleSubmit}>
-        <h2>Register</h2>
+        <h2>Register(new user)</h2>
         <input
           type="text"
           name="name"
@@ -68,12 +62,19 @@ function UserForm() {
           placeholder="Email"
           onChange={handleChange}
         ></input>
+        <input
+          type="text"
+          name="password"
+          value={userFormData.password}
+          placeholder="enter password"
+          onChange={handleChange}
+        ></input>
         <button className="btn" type="submit">
-          Sign In
+          Register
         </button>
       </form>
     </div>
   );
 }
 
-export default UserForm;
+export default UserFormRegister;

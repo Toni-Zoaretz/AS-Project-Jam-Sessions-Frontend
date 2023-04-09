@@ -1,7 +1,13 @@
-import { useState, createContext, useContext } from "react";
-const GlobalContext = createContext();
+import api from "../api/api";
+import { useState, createContext, useContext, useEffect } from "react";
+const JamSessionContext = createContext();
 
 const JamContextProvider = ({ children }) => {
+  const [allJamSessions, setAllJamSessions] = useState([]);
+  const [dates, setDates] = useState({
+    from: "",
+    to: "",
+  });
   const [jamSessionFormData, setJamSessionFormData] = useState({
     jamSessionName: "",
     instruments: "",
@@ -13,20 +19,37 @@ const JamContextProvider = ({ children }) => {
     date: "",
   });
 
+  const getAllJamSessions = async () => {
+    try {
+      const response = await api.get("/jam-sessions");
+      const allJamSessionsArray = response.data.data;
+      setAllJamSessions(allJamSessionsArray);
+      console.log(allJamSessionsArray);
+      console.log(allJamSessions);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <GlobalContext.Provider
+    <JamSessionContext.Provider
       value={{
         jamSessionFormData,
         setJamSessionFormData,
+        getAllJamSessions,
+        allJamSessions,
+        setAllJamSessions,
+        dates,
+        setDates,
       }}
     >
       {children}
-    </GlobalContext.Provider>
+    </JamSessionContext.Provider>
   );
 };
 
-export const useGlobalContext = () => {
-  return useContext(GlobalContext);
+export const useJamSessionGlobalContext = () => {
+  return useContext(JamSessionContext);
 };
 
 export { JamContextProvider };

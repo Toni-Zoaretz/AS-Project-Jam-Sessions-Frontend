@@ -1,10 +1,10 @@
-import JamForm from "../components/JamForm";
+import JamSessionForm from "../components/JamSessionForm";
 
 function Page2() {
   return (
     <div>
       Page2
-      <JamForm />
+      <JamSessionForm />
     </div>
   );
 }

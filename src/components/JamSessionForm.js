@@ -1,8 +1,14 @@
 import api from "../api/api";
-import { useGlobalContext } from "../context/jamContext";
+import { useParams } from "react-router-dom";
+import { useJamSessionGlobalContext } from "../context/jamContext";
+import { useUserGlobalContext } from "../context/userContext";
 
-function JamForm() {
-  const { jamSessionFormData, setJamSessionFormData } = useGlobalContext();
+function JamSessionForm() {
+  const { jamSessionFormData, setJamSessionFormData } =
+    useJamSessionGlobalContext();
+  const { getCurrentUser } = useUserGlobalContext();
+
+  const { userId } = useParams();
 
   function handleChange(e) {
     const name = e.target.name;
@@ -15,20 +21,11 @@ function JamForm() {
     });
   }
 
-  const getJamSessions = async () => {
-    try {
-      const response = await api.get("/jam-sessions");
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const address = `${jamSessionFormData.streetNumber} ${jamSessionFormData.streetName} St, ${jamSessionFormData.cityName}, ${jamSessionFormData.zipcode}, ${jamSessionFormData.countryName}`;
     try {
-      await api.post("/jam-sessions", {
+      await api.post(`/jam-sessions/${userId}`, {
         jamSessionName: jamSessionFormData.jamSessionName,
         instruments: jamSessionFormData.instruments,
         address,
@@ -48,8 +45,7 @@ function JamForm() {
       date: "",
     });
     console.log(jamSessionFormData);
-    console.log(address);
-    getJamSessions();
+    getCurrentUser();
   };
 
   return (
@@ -120,4 +116,4 @@ function JamForm() {
   );
 }
 
-export default JamForm;
+export default JamSessionForm;

@@ -1,9 +1,12 @@
-import UserForm from "../components/UserForm";
+import UserFormRegister from "../components/UserFormRegister";
+import UserFormLogin from "../components/UserFormLogin";
 function Home() {
   return (
     <div>
       Home
-      <UserForm />
+      <UserFormRegister />
+      <br></br>
+      <UserFormLogin />
     </div>
   );
 }

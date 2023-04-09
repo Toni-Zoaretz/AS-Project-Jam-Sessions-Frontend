@@ -12,7 +12,7 @@ function App() {
       element: <Header />,
       children: [
         { path: "/", element: <Home /> },
-        { path: "/page2", element: <Page2 /> },
+        { path: "/page2/:userId", element: <Page2 /> },
         { path: "/page3", element: <Page3 /> },
       ],
     },
