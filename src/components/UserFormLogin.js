@@ -2,13 +2,13 @@ import api from "../api/api";
 import { useUserGlobalContext } from "../context/userContext.js";
 
 function UserFormLogin() {
-  const { userFormData, setUserFormData, getCurrentUser } =
+  const { userLoginFormData, setUserLoginFormData, setCurrentUser } =
     useUserGlobalContext();
 
   function handleChange(e) {
     const name = e.target.name;
     const value = e.target.value;
-    setUserFormData((prevUserFormData) => {
+    setUserLoginFormData((prevUserFormData) => {
       return {
         ...prevUserFormData,
         [name]: value,
@@ -19,12 +19,14 @@ function UserFormLogin() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await api.get(`/jam-user/email/${userFormData.email}`);
+      const response = await api.get(
+        `/jam-user/email/${userLoginFormData.email}`
+      );
+      setCurrentUser(response.data);
     } catch (error) {
       console.error(error);
     }
-    getCurrentUser();
-    setUserFormData({
+    setUserLoginFormData({
       email: "",
     });
   };
@@ -36,7 +38,7 @@ function UserFormLogin() {
         <input
           type="email"
           name="email"
-          value={userFormData.email}
+          value={userLoginFormData.email}
           placeholder="email address you register"
           onChange={handleChange}
         ></input>

@@ -5,7 +5,12 @@ const UserContext = createContext();
 const UserContextProvider = ({ children }) => {
   const [userContactInfo, setUserContactInfo] = useState([]);
   const [currentUser, setCurrentUser] = useState("");
-  const [userFormData, setUserFormData] = useState({
+
+  const [userLoginFormData, setUserLoginFormData] = useState({
+    email: "",
+    // password: "",
+  });
+  const [userRegisterFormData, setUserRegisterFormData] = useState({
     name: "",
     phoneNumber: "",
     email: "",
@@ -36,14 +41,16 @@ const UserContextProvider = ({ children }) => {
   return (
     <UserContext.Provider
       value={{
-        userFormData,
-        setUserFormData,
+        userRegisterFormData,
+        setUserRegisterFormData,
         currentUser,
         setCurrentUser,
         getCurrentUser,
         getUserContactInfoByName,
         setUserContactInfo,
         userContactInfo,
+        userLoginFormData,
+        setUserLoginFormData,
       }}
     >
       {children}

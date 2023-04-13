@@ -3,7 +3,6 @@ import { useUserGlobalContext } from "../context/userContext";
 function MyJam() {
   const { currentUser } = useUserGlobalContext();
   console.log(currentUser);
-
   return (
     <div>
       <h2>My Jam`s</h2>

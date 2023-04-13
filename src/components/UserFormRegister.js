@@ -2,13 +2,13 @@ import api from "../api/api";
 import { useUserGlobalContext } from "../context/userContext.js";
 
 function UserFormRegister() {
-  const { userFormData, setUserFormData, getCurrentUser } =
+  const { userRegisterFormData, setUserRegisterFormData, getCurrentUser } =
     useUserGlobalContext();
 
   function handleChange(e) {
     const name = e.target.name;
     const value = e.target.value;
-    setUserFormData((prevUserFormData) => {
+    setUserRegisterFormData((prevUserFormData) => {
       return {
         ...prevUserFormData,
         [name]: value,
@@ -20,16 +20,16 @@ function UserFormRegister() {
     event.preventDefault();
     try {
       const response = await api.post("/jam-user", {
-        name: userFormData.name,
-        phoneNumber: userFormData.phoneNumber,
-        email: userFormData.email,
-        password: userFormData.password,
+        name: userRegisterFormData.name,
+        phoneNumber: userRegisterFormData.phoneNumber,
+        email: userRegisterFormData.email,
+        password: userRegisterFormData.password,
       });
     } catch (error) {
       console.error(error);
     }
     getCurrentUser();
-    setUserFormData({
+    setUserRegisterFormData({
       name: "",
       phoneNumber: "",
       email: "",
@@ -44,28 +44,28 @@ function UserFormRegister() {
         <input
           type="text"
           name="name"
-          value={userFormData.name}
+          value={userRegisterFormData.name}
           placeholder="Full Name"
           onChange={handleChange}
         ></input>
         <input
           type="number"
           name="phoneNumber"
-          value={userFormData.phoneNumber}
+          value={userRegisterFormData.phoneNumber}
           placeholder="Phone Number"
           onChange={handleChange}
         ></input>
         <input
           type="email"
           name="email"
-          value={userFormData.email}
+          value={userRegisterFormData.email}
           placeholder="Email"
           onChange={handleChange}
         ></input>
         <input
           type="text"
           name="password"
-          value={userFormData.password}
+          value={userRegisterFormData.password}
           placeholder="enter password"
           onChange={handleChange}
         ></input>

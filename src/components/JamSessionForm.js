@@ -1,13 +1,10 @@
 import api from "../api/api";
 import { useParams } from "react-router-dom";
 import { useJamSessionGlobalContext } from "../context/jamContext";
-import { useUserGlobalContext } from "../context/userContext";
 
 function JamSessionForm() {
   const { jamSessionFormData, setJamSessionFormData } =
     useJamSessionGlobalContext();
-  const { setCurrentUser } = useUserGlobalContext();
-  // const { getCurrentUser,getCurrentUser } = useUserGlobalContext();
 
   const { userId } = useParams();
 
@@ -45,15 +42,6 @@ function JamSessionForm() {
       zipcode: "",
       date: "",
     });
-    console.log(jamSessionFormData);
-    try {
-      const response = await api.get("/jam-user");
-      console.log(response.data[response.data.length - 1]);
-      setCurrentUser(response.data[response.data.length - 1]);
-    } catch (error) {
-      console.error("error");
-    }
-    // getCurrentUser();
   };
 
   return (
