@@ -2,11 +2,13 @@ import React from "react";
 import api from "../api/api.js";
 import CustomizedTables from "../components/CustomizedTables.js";
 import { useJamSessionGlobalContext } from "../context/jamContext";
+import { useUserGlobalContext } from "../context/userContext";
 
 function JamSessionsTable() {
   const columns = ["Jam Session Name", "Creator", "Date", "Address"];
   const { dates, setDates, allJamSessions, setAllJamSessions } =
     useJamSessionGlobalContext();
+  const { getUserContactInfoByName } = useUserGlobalContext();
 
   const rows = allJamSessions.map((row, i) => ({
     name: row.jamSessionName,
@@ -60,7 +62,11 @@ function JamSessionsTable() {
         <button type="submit">Filter</button>
       </form>
       JamSessionsTable
-      <CustomizedTables columns={columns} rows={rows} />
+      <CustomizedTables
+        columns={columns}
+        rows={rows}
+        getUserContactInfo={getUserContactInfoByName}
+      />
     </div>
   );
 }

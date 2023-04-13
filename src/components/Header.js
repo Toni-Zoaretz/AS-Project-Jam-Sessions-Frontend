@@ -22,6 +22,9 @@ function Header() {
               <Link to="/page3">Page3</Link>
             </li>
             <li>
+              <Link to={`/my-jam/${currentUser.id}`}>My Jam</Link>
+            </li>
+            <li>
               <button onClick={handleLogOut}>Log Out</button>
             </li>
           </ul>

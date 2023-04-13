@@ -4,6 +4,10 @@ const JamSessionContext = createContext();
 
 const JamContextProvider = ({ children }) => {
   const [allJamSessions, setAllJamSessions] = useState([]);
+  const [location, setLocation] = useState({
+    zipCode: "",
+    distance: "",
+  });
   const [dates, setDates] = useState({
     from: "",
     to: "",
@@ -41,6 +45,8 @@ const JamContextProvider = ({ children }) => {
         setAllJamSessions,
         dates,
         setDates,
+        location,
+        setLocation,
       }}
     >
       {children}

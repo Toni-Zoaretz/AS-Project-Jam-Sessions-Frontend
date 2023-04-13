@@ -3,6 +3,7 @@ import { useState, createContext, useContext } from "react";
 const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
+  const [userContactInfo, setUserContactInfo] = useState([]);
   const [currentUser, setCurrentUser] = useState("");
   const [userFormData, setUserFormData] = useState({
     name: "",
@@ -14,11 +15,21 @@ const UserContextProvider = ({ children }) => {
   const getCurrentUser = async () => {
     const response = await api.get("/jam-user");
     try {
-      // console.log(response.data);
+      console.log(response.data);
       console.log(response.data[response.data.length - 1]);
       setCurrentUser(response.data[response.data.length - 1]);
     } catch (error) {
       console.error("error");
+    }
+  };
+
+  const getUserContactInfoByName = async (userName) => {
+    try {
+      const response = await api.get(`/jam-user/name/${userName}`);
+      console.log(response.data);
+      setUserContactInfo(response.data);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -30,6 +41,9 @@ const UserContextProvider = ({ children }) => {
         currentUser,
         setCurrentUser,
         getCurrentUser,
+        getUserContactInfoByName,
+        setUserContactInfo,
+        userContactInfo,
       }}
     >
       {children}

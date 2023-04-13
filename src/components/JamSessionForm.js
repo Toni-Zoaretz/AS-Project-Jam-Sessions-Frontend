@@ -6,7 +6,8 @@ import { useUserGlobalContext } from "../context/userContext";
 function JamSessionForm() {
   const { jamSessionFormData, setJamSessionFormData } =
     useJamSessionGlobalContext();
-  const { getCurrentUser } = useUserGlobalContext();
+  const { setCurrentUser } = useUserGlobalContext();
+  // const { getCurrentUser,getCurrentUser } = useUserGlobalContext();
 
   const { userId } = useParams();
 
@@ -45,7 +46,14 @@ function JamSessionForm() {
       date: "",
     });
     console.log(jamSessionFormData);
-    getCurrentUser();
+    try {
+      const response = await api.get("/jam-user");
+      console.log(response.data[response.data.length - 1]);
+      setCurrentUser(response.data[response.data.length - 1]);
+    } catch (error) {
+      console.error("error");
+    }
+    // getCurrentUser();
   };
 
   return (

@@ -25,10 +25,10 @@ function UserFormRegister() {
         email: userFormData.email,
         password: userFormData.password,
       });
-      getCurrentUser();
     } catch (error) {
       console.error(error);
     }
+    getCurrentUser();
     setUserFormData({
       name: "",
       phoneNumber: "",
