@@ -3,6 +3,7 @@ import api from "../api/api.js";
 import CustomizedTables from "../components/CustomizedTables.js";
 import { useJamSessionGlobalContext } from "../context/jamContext";
 import { useUserGlobalContext } from "../context/userContext";
+import { formatTimestamp } from "../Utils/formatTimestamp.js";
 
 function JamSessionsTable() {
   const columns = ["Jam Session Name", "Creator", "Date", "Address"];
@@ -13,7 +14,7 @@ function JamSessionsTable() {
   const rows = allJamSessions.map((row, i) => ({
     name: row.jamSessionName,
     creator: row.user_id ? row.user_id.name : "unavailable",
-    date: row.date,
+    date: formatTimestamp(row.date),
     address: row.location.formattedAddress,
     _id: row._id,
   }));

@@ -2,11 +2,10 @@ import { useEffect } from "react";
 import UserContactCard from "../components/UserContactCard";
 import JamSessionMap from "../components/JamSessionsMap";
 import MapChart from "../components/MapChart";
-import JamSessionCalender from "../components/JamSessionCalender";
 import JamSessionsTable from "../components/JamSessionsTable";
 import { useJamSessionGlobalContext } from "../context/jamContext";
 
-function Page3() {
+function SearchPage() {
   const { getAllJamSessions } = useJamSessionGlobalContext();
 
   useEffect(() => {
@@ -15,8 +14,7 @@ function Page3() {
 
   return (
     <div>
-      Page3
-      <JamSessionCalender />
+      Search for a Jam!
       <JamSessionsTable />
       <UserContactCard />
       <JamSessionMap />
@@ -25,4 +23,4 @@ function Page3() {
   );
 }
 
-export default Page3;
+export default SearchPage;

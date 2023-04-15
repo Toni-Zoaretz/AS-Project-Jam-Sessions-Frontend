@@ -1,9 +1,12 @@
 import api from "../api/api";
 import { useUserGlobalContext } from "../context/userContext.js";
+// import { useNavigate } from "react-router-dom";
 
-function UserFormRegister() {
+function UserFormRegister({ setShowForm }) {
   const { userRegisterFormData, setUserRegisterFormData, getCurrentUser } =
     useUserGlobalContext();
+
+  // const navigate = useNavigate();
 
   function handleChange(e) {
     const name = e.target.name;
@@ -35,12 +38,13 @@ function UserFormRegister() {
       email: "",
       password: "",
     });
+    // navigate("/page2");
   };
 
   return (
     <div>
       <form className="form" onSubmit={handleSubmit}>
-        <h2>Register(new user)</h2>
+        <h2>Register</h2>
         <input
           type="text"
           name="name"
@@ -72,6 +76,10 @@ function UserFormRegister() {
         <button className="btn" type="submit">
           Register
         </button>
+        Already have an account?
+        <a href="#" onClick={() => setShowForm(true)}>
+          Click here
+        </a>
       </form>
     </div>
   );

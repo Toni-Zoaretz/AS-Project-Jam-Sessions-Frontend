@@ -1,7 +1,7 @@
 import api from "../api/api";
 import { useUserGlobalContext } from "../context/userContext.js";
 
-function UserFormLogin() {
+function UserFormLogin({ setShowForm }) {
   const { userLoginFormData, setUserLoginFormData, setCurrentUser } =
     useUserGlobalContext();
 
@@ -34,17 +34,27 @@ function UserFormLogin() {
   return (
     <div>
       <form className="form" onSubmit={handleSubmit}>
-        <h2>Login with email(existing user)</h2>
+        <h2>Login</h2>
         <input
           type="email"
           name="email"
           value={userLoginFormData.email}
-          placeholder="email address you register"
+          placeholder="Enter Your Email"
           onChange={handleChange}
+        ></input>
+        <input
+          type="password"
+          name="password"
+          // value={userLoginFormData.email}
+          placeholder="Enter Your Password"
+          // onChange={handleChange}
         ></input>
         <button className="btn" type="submit">
           Login
         </button>
+        <a href="#" onClick={() => setShowForm(false)}>
+          Click here to Register
+        </a>
       </form>
     </div>
   );
