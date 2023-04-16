@@ -5,12 +5,27 @@ function UserContactCard() {
   console.log(userContactInfo);
 
   return (
-    <div>
-      UserContactForm
-      <h3>Contact User and Jam</h3>
-      <span>{userContactInfo.name}</span>
-      <span>{userContactInfo.phoneNumber}</span>
-      <span>{userContactInfo.email}</span>
+    <div className="cards-container">
+      <div className="card">
+        <span className="user-card-title">
+          {userContactInfo.name} Contact Details:
+        </span>
+        <div className="cards-items-container">
+          <div className="card-items">
+            <p>User Name:</p>
+            <h4>{userContactInfo.name}</h4>
+          </div>
+          <div className="card-items">
+            <p>User Phone Number:</p>
+            <h4>{userContactInfo.phoneNumber}</h4>
+          </div>
+          <div className="card-items">
+            <p>User Email:</p>
+            <h4>{userContactInfo.email}</h4>
+          </div>
+        </div>
+        <button className="btn">Whatsapp {userContactInfo.name}</button>
+      </div>
     </div>
   );
 }

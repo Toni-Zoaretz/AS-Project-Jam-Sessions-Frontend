@@ -5,12 +5,13 @@ import HomePage from "./pages/HomePage";
 import Page2 from "./pages/Page2";
 import SearchPage from "./pages/SearchPage";
 import MyJam from "./pages/MyJam";
+import Layout from "./components/Layout";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Header />,
+      element: <Layout />,
       children: [
         { path: "/", element: <HomePage /> },
         { path: "/page2/:userId", element: <Page2 /> },

@@ -3,6 +3,8 @@ import { useState, createContext, useContext } from "react";
 const JamSessionContext = createContext();
 
 const JamContextProvider = ({ children }) => {
+  const [updateFormData, setUpdateFormData] = useState(false);
+
   const [allJamSessions, setAllJamSessions] = useState([]);
   const [jamSessionId, setJamSessionId] = useState(null);
   const [location, setLocation] = useState({
@@ -42,6 +44,7 @@ const JamContextProvider = ({ children }) => {
       console.log(response.data);
       console.log(response.data._id);
       console.log(response.data._id + "😍");
+      setUpdateFormData(true);
       setJamSessionId(response.data._id);
       setJamSessionFormData({
         jamSessionName: response.data.jamSessionName,
@@ -90,6 +93,8 @@ const JamContextProvider = ({ children }) => {
         jamSessionId,
         setJamSessionId,
         deleteJamSession,
+        updateFormData,
+        setUpdateFormData,
       }}
     >
       {children}

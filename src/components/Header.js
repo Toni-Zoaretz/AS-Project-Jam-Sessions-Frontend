@@ -10,24 +10,6 @@ function Header() {
     setCurrentUser("");
   };
 
-  // let page2Route = "";
-  // if (jamSessionId && currentUser.id) {
-  //   page2Route = `/page2/${currentUser.id}`;
-  // } else if (jamSessionId) {
-  //   page2Route = `/page2/${jamSessionId}`;
-  // } else {
-  //   page2Route = "/";
-  // }
-
-  // let page2Link;
-  // if (!currentUser.id && jamSessionId) {
-  //   page2Link = `/page2/${jamSessionId}`;
-  // } else if (currentUser.id && !jamSessionId) {
-  //   page2Link = `/page2/${currentUser.id}`;
-  // } else {
-  //   page2Link = "/page2/";
-  // }
-
   return (
     <>
       <header className="header">
@@ -38,9 +20,6 @@ function Header() {
                 Hey {currentUser.name ? currentUser.name : "Guest"}
               </Link>
             </li>
-            {/* <li>
-              <Link to={page2Route}>Page2</Link>
-            </li> */}
             <li>
               <Link to={`/page2/${currentUser.id}`}>Page2</Link>
             </li>
@@ -61,7 +40,6 @@ function Header() {
           </ul>
         </nav>
       </header>
-      <Outlet />
     </>
   );
 }

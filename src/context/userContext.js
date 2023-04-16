@@ -4,6 +4,8 @@ const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
   const [userContactInfo, setUserContactInfo] = useState([]);
+  const [userContactCard, setUserContactCard] = useState(false);
+
   const [currentUser, setCurrentUser] = useState("");
 
   const [userLoginFormData, setUserLoginFormData] = useState({
@@ -32,6 +34,7 @@ const UserContextProvider = ({ children }) => {
     try {
       const response = await api.get(`/jam-user/name/${userName}`);
       console.log(response.data);
+      setUserContactCard(true);
       setUserContactInfo(response.data);
     } catch (error) {
       console.error(error);
@@ -51,6 +54,8 @@ const UserContextProvider = ({ children }) => {
         userContactInfo,
         userLoginFormData,
         setUserLoginFormData,
+        userContactCard,
+        setUserContactCard,
       }}
     >
       {children}

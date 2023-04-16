@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import UserContactCard from "../components/UserContactCard";
 import JamSessionMap from "../components/JamSessionsMap";
 import MapChart from "../components/MapChart";
 import JamSessionsTable from "../components/JamSessionsTable";
@@ -13,10 +12,8 @@ function SearchPage() {
   }, []);
 
   return (
-    <div>
-      Search for a Jam!
+    <div className="page">
       <JamSessionsTable />
-      <UserContactCard />
       <JamSessionMap />
       <MapChart />
     </div>

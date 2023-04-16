@@ -4,7 +4,7 @@ import { useState } from "react";
 function HomePage() {
   const [showForm, setShowForm] = useState(false);
   return (
-    <div className="homePage-container">
+    <div className="page homePage">
       <div>
         <h1> Welcome to the JAM SESSION App!</h1>
         <p className="description">

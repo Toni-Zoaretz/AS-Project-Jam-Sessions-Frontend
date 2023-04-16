@@ -9,6 +9,8 @@ function JamSessionForm() {
     setJamSessionFormData,
     jamSessionId,
     setJamSessionId,
+    updateFormData,
+    setUpdateFormData,
   } = useJamSessionGlobalContext();
 
   const { setCurrentUser, userLoginFormData } = useUserGlobalContext();
@@ -26,7 +28,6 @@ function JamSessionForm() {
     });
   }
 
-  console.log(jamSessionId);
   const handleSubmit = async (event) => {
     event.preventDefault();
     const address = `${jamSessionFormData.streetNumber} ${jamSessionFormData.streetName} St, ${jamSessionFormData.cityName}, ${jamSessionFormData.zipcode}, ${jamSessionFormData.countryName}`;
@@ -51,8 +52,10 @@ function JamSessionForm() {
       console.error(error);
     } finally {
       const response = await api.get(`/jam-user/${userId}`);
+      console.log(response.data);
       setCurrentUser(response.data);
     }
+    setUpdateFormData(false);
     setJamSessionFormData({
       jamSessionName: "",
       instruments: "",
@@ -65,60 +68,15 @@ function JamSessionForm() {
     });
   };
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   const address = `${jamSessionFormData.streetNumber} ${jamSessionFormData.streetName} St, ${jamSessionFormData.cityName}, ${jamSessionFormData.zipcode}, ${jamSessionFormData.countryName}`;
-
-  //   if (jamSessionId) {
-  //     try {
-  //       await api.put(`/jam-sessions/${jamSessionId}`, {
-  //         jamSessionName: jamSessionFormData.jamSessionName,
-  //         instruments: jamSessionFormData.instruments,
-  //         address,
-  //         date: jamSessionFormData.date,
-  //       });
-  //       const response = await api.get(
-  //         `/jam-user/email/${userLoginFormData.email}`
-  //       );
-  //       console.log(response.data);
-  //       console.log("😍");
-  //       setCurrentUser(response.data);
-  //       // show success message
-  //     } catch (error) {
-  //       console.error(error);
-  //       // show error message
-  //     }
-  //   } else {
-  //     try {
-  //       await api.post(`/jam-sessions/${userId}`, {
-  //         jamSessionName: jamSessionFormData.jamSessionName,
-  //         instruments: jamSessionFormData.instruments,
-  //         address,
-  //         date: jamSessionFormData.date,
-  //       });
-  //       // show success message
-  //     } catch (error) {
-  //       console.error(error);
-  //       // show error message
-  //     }
-  //   }
-
-  //   setJamSessionFormData({
-  //     jamSessionName: "",
-  //     instruments: "",
-  //     streetName: "",
-  //     streetNumber: "",
-  //     cityName: "",
-  //     countryName: "",
-  //     zipcode: "",
-  //     date: "",
-  //   });
-  // };
-
   return (
     <div>
       <form className="form" onSubmit={handleSubmit}>
-        <h2>Create Your Own Jam Session!</h2>
+        {/* <h3>{condistion ? "condition is good" : "condition is bad"}</h3> */}
+        <h3>
+          {updateFormData
+            ? "Update Your Jam Session!"
+            : "Create Your Own Jam Session!"}
+        </h3>
         <input
           type="text"
           name="jamSessionName"
@@ -176,7 +134,7 @@ function JamSessionForm() {
           onChange={handleChange}
         ></input>
         <button className="btn" type="submit">
-          Create
+          {updateFormData ? "Update" : "Create"}
         </button>
       </form>
     </div>

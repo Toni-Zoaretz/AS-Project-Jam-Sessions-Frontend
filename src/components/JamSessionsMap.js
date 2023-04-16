@@ -29,25 +29,38 @@ function JamSessionMap() {
     }
   };
   return (
-    <div>
-      JamSessionMap
-      <form onSubmit={handleSubmit}>
-        <span>Enter Your Zip Code</span>
-        <input
-          type="number"
-          name="zipCode"
-          value={location.zipCode}
-          onChange={handleChange}
-        ></input>
-        <span>Enter km distance from your location</span>
-        <input
-          type="number"
-          name="distance"
-          value={location.distance}
-          onChange={handleChange}
-        ></input>
-        <button type="submit">Search</button>
-      </form>
+    <div className="search-page-container">
+      <div className="form-container">
+        <form onSubmit={handleSubmit} className="filter-form">
+          <span className="filter-title">Filter By Location</span>
+          {/* <div className="filter-container"> */}
+          <div className="filter-field">
+            <span>Enter Your Zip Code:</span>
+            <input
+              type="number"
+              name="zipCode"
+              value={location.zipCode}
+              onChange={handleChange}
+            ></input>
+          </div>
+          <div className="filter-field distance">
+            <span className="input-distance-span">
+              Enter Distance From Your Location:
+            </span>
+            <input
+              className="input-distance"
+              type="number"
+              name="distance"
+              value={location.distance}
+              onChange={handleChange}
+            ></input>
+          </div>
+          {/* </div> */}
+          <button type="submit" className="btn filter-btn">
+            Search
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

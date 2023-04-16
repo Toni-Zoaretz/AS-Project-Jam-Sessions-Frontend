@@ -2,8 +2,7 @@ import JamSessionForm from "../components/JamSessionForm";
 
 function Page2() {
   return (
-    <div>
-      Page2
+    <div className="page jam-form-page">
       <JamSessionForm />
     </div>
   );
