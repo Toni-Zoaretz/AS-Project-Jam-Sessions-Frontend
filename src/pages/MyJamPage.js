@@ -1,5 +1,6 @@
 import { useUserGlobalContext } from "../context/userContext";
 import { useJamSessionGlobalContext } from "../context/jamContext";
+import { formatTimestamp } from "../Utils/formatTimestamp.js";
 
 function MyJamPage() {
   const { currentUser } = useUserGlobalContext();
@@ -44,7 +45,7 @@ function MyJamPage() {
                   {jam.location.formattedAddress}
                 </td>
                 <td data-label="Jam Instruments">{jam.instruments}</td>
-                <td data-label="Jam Date">{jam.date}</td>
+                <td data-label="Jam Date">{formatTimestamp(jam.date)}</td>
               </tr>
             ))}
           </tbody>
