@@ -9,10 +9,11 @@ import UserContactCard from "../components/UserContactCard";
 
 function JamSessionsTable() {
   const columns = ["Jam Session Name", "Creator", "Date", "Address"];
-  const { dates, setDates, allJamSessions, setAllJamSessions } =
+
+  const { dates, setDates, allJamSessions, setAllJamSessions, isLoading } =
     useJamSessionGlobalContext();
-  const { getUserContactInfoByName, userContactCard, setUserContactCard } =
-    useUserGlobalContext();
+
+  const { getUserContactInfoByName, userContactCard } = useUserGlobalContext();
 
   const rows = allJamSessions.map((row, i) => ({
     name: row.jamSessionName,
@@ -78,7 +79,9 @@ function JamSessionsTable() {
             <button type="submit" className="btn filter-btn">
               Filter
             </button>
-            <button className="btn">To Filter By Location Click Here</button>
+            <a href="#location-section" className="btn">
+              To Filter By Location Click Here
+            </a>
             <p className="info-text">
               <FaInfoCircle />
               On The Chart Below Click On The Creator<br></br> Name in Order To
@@ -92,11 +95,17 @@ function JamSessionsTable() {
           </div>
         ) : null}
       </div>
-      <CustomizedTables
-        columns={columns}
-        rows={rows}
-        getUserContactInfo={getUserContactInfoByName}
-      />
+      {isLoading ? (
+        <div className="loader">
+          <h2>LOADING...</h2>
+        </div>
+      ) : (
+        <CustomizedTables
+          columns={columns}
+          rows={rows}
+          getUserContactInfo={getUserContactInfoByName}
+        />
+      )}
     </div>
   );
 }

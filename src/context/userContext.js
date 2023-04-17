@@ -50,7 +50,6 @@ const UserContextProvider = ({ children }) => {
         setCurrentUser,
         getCurrentUser,
         getUserContactInfoByName,
-        setUserContactInfo,
         userContactInfo,
         userLoginFormData,
         setUserLoginFormData,

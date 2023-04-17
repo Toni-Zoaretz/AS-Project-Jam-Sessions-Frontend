@@ -1,6 +1,6 @@
 import JamSessionForm from "../components/JamSessionForm";
 
-function Page2() {
+function JamFormPage() {
   return (
     <div className="page jam-form-page">
       <JamSessionForm />
@@ -8,4 +8,4 @@ function Page2() {
   );
 }
 
-export default Page2;
+export default JamFormPage;

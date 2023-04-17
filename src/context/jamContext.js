@@ -4,7 +4,7 @@ const JamSessionContext = createContext();
 
 const JamContextProvider = ({ children }) => {
   const [updateFormData, setUpdateFormData] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
   const [allJamSessions, setAllJamSessions] = useState([]);
   const [jamSessionId, setJamSessionId] = useState(null);
   const [location, setLocation] = useState({
@@ -28,6 +28,7 @@ const JamContextProvider = ({ children }) => {
 
   const getAllJamSessions = async () => {
     try {
+      setIsLoading(true);
       const response = await api.get("/jam-sessions");
       const allJamSessionsArray = response.data.data;
       setAllJamSessions(allJamSessionsArray);
@@ -35,6 +36,8 @@ const JamContextProvider = ({ children }) => {
       console.log(allJamSessions);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -95,6 +98,8 @@ const JamContextProvider = ({ children }) => {
         deleteJamSession,
         updateFormData,
         setUpdateFormData,
+        isLoading,
+        setIsLoading,
       }}
     >
       {children}

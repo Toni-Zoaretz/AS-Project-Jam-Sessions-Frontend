@@ -1,7 +1,6 @@
 import api from "../api/api";
 import { useParams } from "react-router-dom";
 import { useJamSessionGlobalContext } from "../context/jamContext";
-import { useUserGlobalContext } from "../context/userContext";
 
 function JamSessionForm() {
   const {
@@ -13,7 +12,7 @@ function JamSessionForm() {
     setUpdateFormData,
   } = useJamSessionGlobalContext();
 
-  const { setCurrentUser, userLoginFormData } = useUserGlobalContext();
+  // const { setCurrentUser, userLoginFormData } = useUserGlobalContext();
 
   const { userId } = useParams();
 
@@ -50,11 +49,14 @@ function JamSessionForm() {
       }
     } catch (error) {
       console.error(error);
-    } finally {
-      const response = await api.get(`/jam-user/${userId}`);
-      console.log(response.data);
-      setCurrentUser(response.data);
     }
+
+    // finally {
+    //   const response = await api.get(`/jam-user/${userId}`);
+    //   console.log(response.data);
+    //   setCurrentUser(response.data);
+    // }
+
     setUpdateFormData(false);
     setJamSessionFormData({
       jamSessionName: "",
@@ -71,7 +73,6 @@ function JamSessionForm() {
   return (
     <div>
       <form className="form" onSubmit={handleSubmit}>
-        {/* <h3>{condistion ? "condition is good" : "condition is bad"}</h3> */}
         <h3>
           {updateFormData
             ? "Update Your Jam Session!"

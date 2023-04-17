@@ -1,12 +1,9 @@
 import api from "../api/api";
 import { useUserGlobalContext } from "../context/userContext.js";
-// import { useNavigate } from "react-router-dom";
 
 function UserFormRegister({ setShowForm }) {
   const { userRegisterFormData, setUserRegisterFormData, getCurrentUser } =
     useUserGlobalContext();
-
-  // const navigate = useNavigate();
 
   function handleChange(e) {
     const name = e.target.name;
@@ -38,7 +35,6 @@ function UserFormRegister({ setShowForm }) {
       email: "",
       password: "",
     });
-    // navigate("/page2");
   };
 
   return (

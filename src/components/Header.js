@@ -1,13 +1,22 @@
 import { Link } from "react-router-dom";
-import { Outlet } from "react-router-dom";
+import { AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineUser } from "react-icons/ai";
+import { AiOutlineForm } from "react-icons/ai";
+
+import { useNavigate } from "react-router-dom";
+
 import { useUserGlobalContext } from "../context/userContext.js";
 import { useJamSessionGlobalContext } from "../context/jamContext";
 
 function Header() {
   const { currentUser, setCurrentUser } = useUserGlobalContext();
   const { jamSessionId } = useJamSessionGlobalContext();
+
+  const navigate = useNavigate();
+
   const handleLogOut = () => {
     setCurrentUser("");
+    navigate("/");
   };
 
   return (
@@ -15,28 +24,47 @@ function Header() {
       <header className="header">
         <nav>
           <ul className="list">
-            <li>
-              <Link to="/">
-                Hey {currentUser.name ? currentUser.name : "Guest"}
-              </Link>
-            </li>
-            <li>
-              <Link to={`/page2/${currentUser.id}`}>Page2</Link>
-            </li>
-            <li>
-              <Link to={`/page2/${jamSessionId}`}>Page2 updates</Link>
-            </li>
-            <li>
-              <Link to="/searchPage">Search For A Jam</Link>
-            </li>
-            <li>
-              <Link to={`/my-jam/${currentUser.id}`}>My Jam`s</Link>
-            </li>
-            <li>
-              <button onClick={handleLogOut} className="btn">
-                Log Out
-              </button>
-            </li>
+            <div>
+              <li>
+                <Link to="/">
+                  Hey {currentUser.name ? currentUser.name : "Guest"}
+                </Link>
+              </li>
+            </div>
+            <div className="middle-nav">
+              <div>
+                <li>
+                  <Link to={`/jamFormPage/${currentUser.id}`}>
+                    Jam Form <AiOutlineForm />
+                  </Link>
+                </li>
+              </div>
+
+              <div>
+                <li>
+                  <Link to={`/jamFormPage/${jamSessionId}`}></Link>
+                </li>
+              </div>
+              <div>
+                <li>
+                  <Link to="/searchPage">
+                    Search Jam <AiOutlineSearch className="icon" />
+                  </Link>
+                </li>
+              </div>
+              <li>
+                <Link to={`/my-jam/${currentUser.id}`}>
+                  My Jam`s <AiOutlineUser />
+                </Link>
+              </li>
+            </div>
+            <div>
+              <li>
+                <button onClick={handleLogOut} className="btn">
+                  Log Out
+                </button>
+              </li>
+            </div>
           </ul>
         </nav>
       </header>

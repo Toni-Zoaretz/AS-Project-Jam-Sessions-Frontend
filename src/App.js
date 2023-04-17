@@ -2,9 +2,9 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
-import Page2 from "./pages/Page2";
+import JamFormPage from "./pages/JamFormPage";
 import SearchPage from "./pages/SearchPage";
-import MyJam from "./pages/MyJam";
+import MyJamPage from "./pages/MyJamPage";
 import Layout from "./components/Layout";
 
 function App() {
@@ -14,10 +14,9 @@ function App() {
       element: <Layout />,
       children: [
         { path: "/", element: <HomePage /> },
-        { path: "/page2/:userId", element: <Page2 /> },
-        // { path: "/page2/:jamSessionId", element: <Page2 /> },
+        { path: "/JamFormPage/:userId", element: <JamFormPage /> },
         { path: "/searchPage", element: <SearchPage /> },
-        { path: "/my-jam/:userId", element: <MyJam /> },
+        { path: "/my-jam/:userId", element: <MyJamPage /> },
       ],
     },
   ]);
