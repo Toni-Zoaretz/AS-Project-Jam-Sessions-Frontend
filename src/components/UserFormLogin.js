@@ -1,9 +1,16 @@
 import api from "../api/api";
 import { useUserGlobalContext } from "../context/userContext.js";
+import { loginValidation } from "../Utils/loginValidation";
 
 function UserFormLogin({ setShowForm }) {
-  const { userLoginFormData, setUserLoginFormData, setCurrentUser } =
-    useUserGlobalContext();
+  const {
+    userLoginFormData,
+    setUserLoginFormData,
+    setCurrentUser,
+    errorMessage,
+    setErrorMessage,
+    allUsers,
+  } = useUserGlobalContext();
 
   // ---------------------------
   // const { currentUser } = useUserGlobalContext();
@@ -22,6 +29,15 @@ function UserFormLogin({ setShowForm }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const test = ["hey", "you"];
+    console.log(allUsers);
+    loginValidation(
+      test,
+      userLoginFormData.email,
+      userLoginFormData.password,
+      setErrorMessage
+    );
+
     try {
       const response = await api.get(
         `/jam-user/email/${userLoginFormData.email}`
@@ -34,6 +50,7 @@ function UserFormLogin({ setShowForm }) {
     }
     setUserLoginFormData({
       email: "",
+      password: "",
     });
   };
 
@@ -51,9 +68,9 @@ function UserFormLogin({ setShowForm }) {
         <input
           type="password"
           name="password"
-          // value={userLoginFormData.email}
+          value={userLoginFormData.password}
           placeholder="Enter Your Password"
-          // onChange={handleChange}
+          onChange={handleChange}
         ></input>
         <button className="btn" type="submit">
           Login
@@ -61,6 +78,7 @@ function UserFormLogin({ setShowForm }) {
         <a href="#" onClick={() => setShowForm(false)}>
           Click here to Register
         </a>
+        {errorMessage ? <p> {errorMessage} </p> : null}
       </form>
     </div>
   );

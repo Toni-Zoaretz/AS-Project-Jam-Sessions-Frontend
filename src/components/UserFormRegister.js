@@ -1,9 +1,15 @@
 import api from "../api/api";
 import { useUserGlobalContext } from "../context/userContext.js";
+import { registerValidation } from "../Utils/registerValidation";
 
 function UserFormRegister({ setShowForm }) {
-  const { userRegisterFormData, setUserRegisterFormData, getCurrentUser } =
-    useUserGlobalContext();
+  const {
+    userRegisterFormData,
+    setUserRegisterFormData,
+    getCurrentUser,
+    errorMessage,
+    setErrorMessage,
+  } = useUserGlobalContext();
 
   function handleChange(e) {
     const name = e.target.name;
@@ -18,6 +24,14 @@ function UserFormRegister({ setShowForm }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    registerValidation(
+      userRegisterFormData.password,
+      userRegisterFormData.phoneNumber,
+      userRegisterFormData.email,
+      setErrorMessage
+    );
+
     try {
       const response = await api.post("/jam-user", {
         name: userRegisterFormData.name,
@@ -76,6 +90,7 @@ function UserFormRegister({ setShowForm }) {
         <a href="#" onClick={() => setShowForm(true)}>
           Click here
         </a>
+        {errorMessage ? <p> {errorMessage} </p> : null}
       </form>
     </div>
   );
