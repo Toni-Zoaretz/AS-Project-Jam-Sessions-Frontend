@@ -1,14 +1,22 @@
+import { useEffect } from "react";
 import api from "../api/api";
 import { useUserGlobalContext } from "../context/userContext.js";
 import { registerValidation } from "../Utils/registerValidation";
 
+import { useNavigate } from "react-router-dom";
+
 function UserFormRegister({ setShowForm }) {
+  const navigate = useNavigate();
+
   const {
     userRegisterFormData,
     setUserRegisterFormData,
-    getCurrentUser,
+    // getCurrentUser,
     errorMessage,
     setErrorMessage,
+    currentUser,
+    setAllUsers,
+    setCurrentUser,
   } = useUserGlobalContext();
 
   function handleChange(e) {
@@ -21,6 +29,23 @@ function UserFormRegister({ setShowForm }) {
       };
     });
   }
+
+  useEffect(() => {
+    console.log(currentUser);
+    if (currentUser) {
+      navigate(`/jamFormPage/${currentUser.id}`);
+    }
+  }, [currentUser]);
+
+  const getCurrentUser = async () => {
+    try {
+      const response = await api.get("/jam-user");
+      setAllUsers(response.data);
+      setCurrentUser(response.data[response.data.length - 1]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -41,7 +66,7 @@ function UserFormRegister({ setShowForm }) {
     } catch (error) {
       console.error(error);
     }
-    getCurrentUser();
+    await getCurrentUser();
     setUserRegisterFormData({
       name: "",
       phoneNumber: "",

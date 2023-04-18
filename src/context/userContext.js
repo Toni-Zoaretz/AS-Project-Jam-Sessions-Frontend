@@ -2,7 +2,11 @@ import api from "../api/api";
 import { useState, createContext, useContext } from "react";
 const UserContext = createContext();
 
+// import { useNavigate } from "react-router-dom";
+
 const UserContextProvider = ({ children }) => {
+  // const navigate = useNavigate();
+
   const [errorMessage, setErrorMessage] = useState("");
   const [allUsers, setAllUsers] = useState([]);
   const [userContactInfo, setUserContactInfo] = useState([]);
@@ -22,15 +26,15 @@ const UserContextProvider = ({ children }) => {
     password: "",
   });
 
-  const getCurrentUser = async () => {
-    try {
-      const response = await api.get("/jam-user");
-      setAllUsers(response.data);
-      setCurrentUser(response.data[response.data.length - 1]);
-    } catch (error) {
-      console.error("error");
-    }
-  };
+  // const getCurrentUser = async () => {
+  //   try {
+  //     const response = await api.get("/jam-user");
+  //     setAllUsers(response.data);
+  //     setCurrentUser(response.data[response.data.length - 1]);
+  //   } catch (error) {
+  //     console.error("error");
+  //   }
+  // };
 
   const getUserContactInfoByName = async (userName) => {
     try {
@@ -49,7 +53,7 @@ const UserContextProvider = ({ children }) => {
         setUserRegisterFormData,
         currentUser,
         setCurrentUser,
-        getCurrentUser,
+        // getCurrentUser,
         getUserContactInfoByName,
         userContactInfo,
         userLoginFormData,
@@ -59,6 +63,7 @@ const UserContextProvider = ({ children }) => {
         errorMessage,
         setErrorMessage,
         allUsers,
+        setAllUsers,
       }}
     >
       {children}

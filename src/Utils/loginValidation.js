@@ -10,7 +10,7 @@ export const loginValidation = (
   if (userValidation) {
     return true;
   } else {
-    setError("Email and Password Not Match");
+    // setError("Email and Password Not Match");
     return false;
   }
 };

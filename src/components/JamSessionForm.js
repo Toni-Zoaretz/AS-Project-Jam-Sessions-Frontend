@@ -1,9 +1,14 @@
 import api from "../api/api";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useJamSessionGlobalContext } from "../context/jamContext";
 import { useUserGlobalContext } from "../context/userContext";
 
+import { useNavigate } from "react-router-dom";
+
 function JamSessionForm() {
+  const navigate = useNavigate();
+
   const {
     jamSessionFormData,
     setJamSessionFormData,
@@ -13,7 +18,7 @@ function JamSessionForm() {
     setUpdateFormData,
   } = useJamSessionGlobalContext();
 
-  const { setCurrentUser } = useUserGlobalContext();
+  const { setCurrentUser, currentUser } = useUserGlobalContext();
 
   const { userId } = useParams();
 
@@ -27,6 +32,13 @@ function JamSessionForm() {
       };
     });
   }
+
+  // useEffect(() => {
+  //   console.log(currentUser);
+  //   if (currentUser) {
+  //     navigate(`/my-jam/${currentUser.id}`);
+  //   }
+  // }, [currentUser]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -65,6 +77,7 @@ function JamSessionForm() {
       countryName: "",
       date: "",
     });
+    navigate(`/my-jam/${currentUser.id}`);
   };
 
   return (

@@ -4,7 +4,12 @@ import { formatTimestamp } from "../Utils/formatTimestamp.js";
 import { useParams } from "react-router-dom";
 import api from "../api/api";
 
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
 function MyJamPage() {
+  const navigate = useNavigate();
+
   const { currentUser, setCurrentUser } = useUserGlobalContext();
 
   const {
@@ -12,6 +17,7 @@ function MyJamPage() {
     setUpdateFormData,
     setJamSessionId,
     setJamSessionFormData,
+    jamSessionId,
   } = useJamSessionGlobalContext();
 
   const { userId } = useParams();
@@ -29,6 +35,21 @@ function MyJamPage() {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (jamSessionId) {
+      navigate(`/jamFormPage/${jamSessionId}`);
+    }
+    const getCurrentUser = async () => {
+      try {
+        const response = await api.get(`/jam-user/${userId}`);
+        setCurrentUser(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCurrentUser();
+  }, [jamSessionId]);
 
   const getOneJamDataByName = async (jamSessionName) => {
     try {

@@ -1,12 +1,18 @@
 import api from "../api/api";
+import { useEffect } from "react";
 import { useUserGlobalContext } from "../context/userContext.js";
 import { loginValidation } from "../Utils/loginValidation";
 
+import { useNavigate } from "react-router-dom";
+
 function UserFormLogin({ setShowForm }) {
+  const navigate = useNavigate();
+
   const {
     userLoginFormData,
     setUserLoginFormData,
     setCurrentUser,
+    currentUser,
     errorMessage,
     setErrorMessage,
     allUsers,
@@ -22,6 +28,13 @@ function UserFormLogin({ setShowForm }) {
       };
     });
   }
+
+  useEffect(() => {
+    console.log(currentUser);
+    if (currentUser) {
+      navigate(`/jamFormPage/${currentUser.id}`);
+    }
+  }, [currentUser]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
