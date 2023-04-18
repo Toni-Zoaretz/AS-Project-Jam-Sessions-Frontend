@@ -12,7 +12,7 @@ const UserContextProvider = ({ children }) => {
   const [userContactInfo, setUserContactInfo] = useState([]);
   const [userContactCard, setUserContactCard] = useState(false);
 
-  const [currentUser, setCurrentUser] = useState([]);
+  const [currentUser, setCurrentUser] = useState("");
 
   const [userLoginFormData, setUserLoginFormData] = useState({
     email: "",
@@ -25,16 +25,6 @@ const UserContextProvider = ({ children }) => {
     email: "",
     password: "",
   });
-
-  // const getCurrentUser = async () => {
-  //   try {
-  //     const response = await api.get("/jam-user");
-  //     setAllUsers(response.data);
-  //     setCurrentUser(response.data[response.data.length - 1]);
-  //   } catch (error) {
-  //     console.error("error");
-  //   }
-  // };
 
   const getUserContactInfoByName = async (userName) => {
     try {

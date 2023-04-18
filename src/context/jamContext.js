@@ -35,8 +35,6 @@ const JamContextProvider = ({ children }) => {
       const response = await api.get("/jam-sessions");
       const allJamSessionsArray = response.data.data;
       setAllJamSessions(allJamSessionsArray);
-      console.log(allJamSessionsArray);
-      console.log(allJamSessions);
     } catch (error) {
       console.log(error);
     } finally {

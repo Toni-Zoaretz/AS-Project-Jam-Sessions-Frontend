@@ -31,7 +31,6 @@ function UserFormRegister({ setShowForm }) {
   }
 
   useEffect(() => {
-    console.log(currentUser);
     if (currentUser) {
       navigate(`/jamFormPage/${currentUser.id}`);
     }

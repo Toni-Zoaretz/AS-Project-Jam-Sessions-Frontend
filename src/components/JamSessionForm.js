@@ -33,13 +33,6 @@ function JamSessionForm() {
     });
   }
 
-  // useEffect(() => {
-  //   console.log(currentUser);
-  //   if (currentUser) {
-  //     navigate(`/my-jam/${currentUser.id}`);
-  //   }
-  // }, [currentUser]);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const address = `${jamSessionFormData.streetNumber} ${jamSessionFormData.streetName} St, ${jamSessionFormData.cityName}, ${jamSessionFormData.countryName}`;
