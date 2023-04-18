@@ -44,7 +44,7 @@ function MyJamPage() {
         streetName: response.data.location.street.split(" ")[1],
         streetNumber: response.data.location.street.split(" ")[0],
         cityName: response.data.location.city,
-        zipcode: response.data.location.zipcode,
+        // zipcode: response.data.location.zipcode,
         countryName: response.data.location.country,
         date: response.data.date.split("T")[0],
       });
@@ -77,14 +77,14 @@ function MyJamPage() {
                 <tr key={jamIndex}>
                   <td data-label="Jam Session Name">
                     <button
-                      className="btn myJam-btn"
+                      className="btn update-btn"
                       onClick={() => getOneJamDataByName(jam.jamSessionName)}
                     >
                       Update
                     </button>
                     {jam.jamSessionName}
                     <button
-                      className="btn myJam-btn"
+                      className="btn delete-btn"
                       onClick={() => deleteJamSession(jam._id)}
                     >
                       Delete

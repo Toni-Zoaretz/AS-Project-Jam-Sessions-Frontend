@@ -11,5 +11,6 @@ export const loginValidation = (
     return true;
   } else {
     setError("Email and Password Not Match");
+    return false;
   }
 };

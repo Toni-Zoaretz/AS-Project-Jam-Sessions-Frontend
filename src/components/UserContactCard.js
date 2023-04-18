@@ -1,4 +1,5 @@
 import { useUserGlobalContext } from "../context/userContext";
+import { BsWhatsapp } from "react-icons/bs";
 
 function UserContactCard() {
   const { userContactInfo } = useUserGlobalContext();
@@ -24,7 +25,13 @@ function UserContactCard() {
             <h4>{userContactInfo.email}</h4>
           </div>
         </div>
-        <button className="btn">Whatsapp {userContactInfo.name}</button>
+        <a
+          href={`http://wa.me/${userContactInfo.phoneNumber}`}
+          className="btn"
+          target="blank"
+        >
+          Whatsapp {userContactInfo.name} <BsWhatsapp />
+        </a>
       </div>
     </div>
   );

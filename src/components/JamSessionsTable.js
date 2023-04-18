@@ -21,7 +21,8 @@ function JamSessionsTable() {
     getAllJamSessions,
   } = useJamSessionGlobalContext();
 
-  const { getUserContactInfoByName, userContactCard } = useUserGlobalContext();
+  const { getUserContactInfoByName, userContactCard, setUserContactCard } =
+    useUserGlobalContext();
 
   const rows = allJamSessions.map((row, i) => ({
     name: row.jamSessionName,
@@ -50,6 +51,7 @@ function JamSessionsTable() {
         from: "",
         to: "",
       });
+      setUserContactCard(false);
       setFilterButton(false);
       return;
     }
@@ -99,8 +101,8 @@ function JamSessionsTable() {
             </a>
             <p className="info-text">
               <FaInfoCircle />
-              On The Chart Below Click On The Creator<br></br> Name in Order To
-              See His Contact Details
+              On The Chart Below Click On The Relevant<br></br> Jam Session In
+              Order To See Creator Contact Info
             </p>
           </form>
         </div>
@@ -118,7 +120,7 @@ function JamSessionsTable() {
         <CustomizedTables
           columns={columns}
           rows={rows}
-          getUserContactInfo={getUserContactInfoByName}
+          getUserContactInfoByName={getUserContactInfoByName}
         />
       )}
     </div>

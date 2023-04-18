@@ -29,10 +29,10 @@ function UserFormLogin({ setShowForm }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const test = ["hey", "you"];
+
     console.log(allUsers);
     loginValidation(
-      test,
+      allUsers,
       userLoginFormData.email,
       userLoginFormData.password,
       setErrorMessage

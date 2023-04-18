@@ -80,8 +80,8 @@ function JamSessionMap() {
           </button>
           <p className="info-text">
             <FaInfoCircle />
-            On The Map Below Click On Red Dot<br></br>in Order To See Jam User
-            Contact Details
+            On The Map Below Click On Jam Session<br></br>Name in Order To See
+            Jam User Contact Details
           </p>
         </form>
       </div>

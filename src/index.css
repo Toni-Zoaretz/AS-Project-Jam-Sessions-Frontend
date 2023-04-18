@@ -127,10 +127,25 @@ table {
   /* border: 2px solid rgb(0, 183, 255); */
   width: 80%;
   margin: auto;
+  position: relative;
 }
 
-.myJam-btn {
-  /* margin: 10px 20px; */
+.update-btn {
+  position: absolute;
+  left: 15px;
+  /* padding-bottom: 10px; */
+  /* bpadding-bottom: 0; */
+}
+
+.delete-btn {
+  position: absolute;
+  right: 15px;
+  /* padding-bottom: 10px; */
+  /* top: 0px; */
+}
+
+.creatorName {
+  cursor: pointer;
 }
 
 /* -------------------------------- */

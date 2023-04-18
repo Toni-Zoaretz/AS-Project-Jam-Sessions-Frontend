@@ -32,7 +32,8 @@ function JamSessionForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const address = `${jamSessionFormData.streetNumber} ${jamSessionFormData.streetName} St, ${jamSessionFormData.cityName}, ${jamSessionFormData.zipcode}, ${jamSessionFormData.countryName}`;
+    const address = `${jamSessionFormData.streetNumber} ${jamSessionFormData.streetName} St, ${jamSessionFormData.cityName}, ${jamSessionFormData.countryName}`;
+    // const address = `${jamSessionFormData.streetNumber} ${jamSessionFormData.streetName} St, ${jamSessionFormData.cityName}, ${jamSessionFormData.zipcode}, ${jamSessionFormData.countryName}`;
     try {
       if (jamSessionId) {
         await api.put(`jam-sessions/${jamSessionId}`, {
@@ -70,7 +71,7 @@ function JamSessionForm() {
       streetNumber: "",
       cityName: "",
       countryName: "",
-      zipcode: "",
+      // zipcode: "",
       date: "",
     });
   };
@@ -111,13 +112,13 @@ function JamSessionForm() {
           placeholder="St Number"
           onChange={handleChange}
         ></input>
-        <input
+        {/* <input
           type="number"
           name="zipcode"
           value={jamSessionFormData.zipcode}
           placeholder="Zip Code"
           onChange={handleChange}
-        ></input>
+        ></input> */}
         <input
           type="text"
           name="cityName"

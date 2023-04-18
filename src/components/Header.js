@@ -9,12 +9,14 @@ import { useUserGlobalContext } from "../context/userContext.js";
 import { useJamSessionGlobalContext } from "../context/jamContext";
 
 function Header() {
-  const { currentUser, setCurrentUser } = useUserGlobalContext();
+  const { currentUser, setCurrentUser, setErrorMessage } =
+    useUserGlobalContext();
   const { jamSessionId } = useJamSessionGlobalContext();
 
   const navigate = useNavigate();
 
   const handleLogOut = () => {
+    setErrorMessage(" ");
     setCurrentUser("");
     navigate("/");
   };

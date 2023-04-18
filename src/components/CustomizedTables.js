@@ -29,25 +29,34 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function CustomizedTables({ columns, rows, getUserContactInfo }) {
+function CustomizedTables({ columns, rows, getUserContactInfoByName }) {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 200 }} aria-label="customized table">
         <TableHead>
           <TableRow>
             {columns?.map((colTitle, i) => {
-              return <StyledTableCell key={i}>{colTitle}</StyledTableCell>;
+              return (
+                <StyledTableCell className="creatorName" key={i}>
+                  {colTitle}
+                </StyledTableCell>
+              );
             })}
           </TableRow>
         </TableHead>
         <TableBody>
           {rows?.map((row, rowIndex) => (
-            <StyledTableRow key={`${row._id}${rowIndex}`}>
+            <StyledTableRow
+              key={`${row._id}${rowIndex}`}
+              className="creatorName"
+            >
               {Object.entries(row).map(
                 ([key, value], indexValue) =>
                   key !== "_id" && (
                     <StyledTableCell
-                      onClick={() => getUserContactInfo(rows[rowIndex].creator)}
+                      onClick={() =>
+                        getUserContactInfoByName(rows[rowIndex].creator)
+                      }
                       key={indexValue}
                       component="th"
                       scope="row"
