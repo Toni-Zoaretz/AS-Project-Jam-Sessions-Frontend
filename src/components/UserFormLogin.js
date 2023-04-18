@@ -75,7 +75,11 @@ function UserFormLogin({ setShowForm }) {
         <button className="btn" type="submit">
           Login
         </button>
-        <a href="#" onClick={() => setShowForm(false)}>
+        <a
+          href="#registerForm"
+          onClick={() => setShowForm(false)}
+          id="loginForm"
+        >
           Click here to Register
         </a>
         {errorMessage ? <p> {errorMessage} </p> : null}

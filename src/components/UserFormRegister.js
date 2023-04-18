@@ -87,7 +87,11 @@ function UserFormRegister({ setShowForm }) {
           Register
         </button>
         Already have an account?
-        <a href="#" onClick={() => setShowForm(true)}>
+        <a
+          href="#loginForm"
+          onClick={() => setShowForm(true)}
+          id="registerForm"
+        >
           Click here
         </a>
         {errorMessage ? <p> {errorMessage} </p> : null}
