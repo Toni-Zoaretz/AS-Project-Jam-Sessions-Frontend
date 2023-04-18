@@ -11,7 +11,6 @@ function UserFormRegister({ setShowForm }) {
   const {
     userRegisterFormData,
     setUserRegisterFormData,
-    // getCurrentUser,
     errorMessage,
     setErrorMessage,
     currentUser,

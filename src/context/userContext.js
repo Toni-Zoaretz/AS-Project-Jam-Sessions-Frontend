@@ -2,11 +2,7 @@ import api from "../api/api";
 import { useState, createContext, useContext } from "react";
 const UserContext = createContext();
 
-// import { useNavigate } from "react-router-dom";
-
 const UserContextProvider = ({ children }) => {
-  // const navigate = useNavigate();
-
   const [errorMessage, setErrorMessage] = useState("");
   const [allUsers, setAllUsers] = useState([]);
   const [userContactInfo, setUserContactInfo] = useState([]);
@@ -43,7 +39,6 @@ const UserContextProvider = ({ children }) => {
         setUserRegisterFormData,
         currentUser,
         setCurrentUser,
-        // getCurrentUser,
         getUserContactInfoByName,
         userContactInfo,
         userLoginFormData,
