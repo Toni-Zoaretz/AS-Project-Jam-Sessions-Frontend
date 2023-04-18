@@ -5,6 +5,10 @@ function UserFormLogin({ setShowForm }) {
   const { userLoginFormData, setUserLoginFormData, setCurrentUser } =
     useUserGlobalContext();
 
+  // ---------------------------
+  // const { currentUser } = useUserGlobalContext();
+  // ---------------------------
+
   function handleChange(e) {
     const name = e.target.name;
     const value = e.target.value;
@@ -22,7 +26,9 @@ function UserFormLogin({ setShowForm }) {
       const response = await api.get(
         `/jam-user/email/${userLoginFormData.email}`
       );
+      console.log(response.data);
       setCurrentUser(response.data);
+      console.log("💜💜💜 The User above was find my email (currentUser)");
     } catch (error) {
       console.error(error);
     }

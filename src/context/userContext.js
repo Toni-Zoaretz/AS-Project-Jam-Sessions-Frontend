@@ -6,7 +6,7 @@ const UserContextProvider = ({ children }) => {
   const [userContactInfo, setUserContactInfo] = useState([]);
   const [userContactCard, setUserContactCard] = useState(false);
 
-  const [currentUser, setCurrentUser] = useState("");
+  const [currentUser, setCurrentUser] = useState([]);
 
   const [userLoginFormData, setUserLoginFormData] = useState({
     email: "",

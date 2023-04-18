@@ -1,12 +1,60 @@
 import { useUserGlobalContext } from "../context/userContext";
 import { useJamSessionGlobalContext } from "../context/jamContext";
 import { formatTimestamp } from "../Utils/formatTimestamp.js";
+import { useParams } from "react-router-dom";
+import api from "../api/api";
 
 function MyJamPage() {
-  const { currentUser } = useUserGlobalContext();
-  const { getOneJamDataByName, deleteJamSession } =
-    useJamSessionGlobalContext();
+  const { currentUser, setCurrentUser } = useUserGlobalContext();
+
+  const {
+    setAllJamSessions,
+    setUpdateFormData,
+    setJamSessionId,
+    setJamSessionFormData,
+  } = useJamSessionGlobalContext();
+
+  const { userId } = useParams();
+
+  const deleteJamSession = async (jamSessionId) => {
+    try {
+      await api.delete(`/jam-sessions/${jamSessionId}`);
+      setAllJamSessions((prevSessions) =>
+        prevSessions.filter((session) => session._id !== jamSessionId)
+      );
+      const response = await api.get(`/jam-user/${userId}`);
+      console.log(response.data);
+      console.log("😊 The Respond above in the Current User from Delete");
+      setCurrentUser(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getOneJamDataByName = async (jamSessionName) => {
+    try {
+      const response = await api.get(`/jam-sessions/name/${jamSessionName}`);
+      console.log(response.data._id);
+      console.log(response.data._id + "😍");
+      setUpdateFormData(true);
+      setJamSessionId(response.data._id);
+      setJamSessionFormData({
+        jamSessionName: response.data.jamSessionName,
+        instruments: response.data.instruments,
+        streetName: response.data.location.street.split(" ")[1],
+        streetNumber: response.data.location.street.split(" ")[0],
+        cityName: response.data.location.city,
+        zipcode: response.data.location.zipcode,
+        countryName: response.data.location.country,
+        date: response.data.date.split("T")[0],
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   console.log(currentUser);
+  console.log("💙💙💙 The User above its the Current User for this page");
 
   return (
     <div className="page myJamPage-container">
