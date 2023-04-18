@@ -21,10 +21,6 @@ h1 {
   font-weight: 500;
 }
 
-.icon {
-  /* margin-top: 5px; */
-}
-
 .myJamPage-message {
   font-size: 1.2rem;
   box-shadow: rgba(90, 91, 92, 0.202) 0px 8px 24px;
@@ -47,20 +43,14 @@ h1 {
 
 .header {
   border-bottom: 2px solid rgba(117, 113, 113, 0.426);
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* background-color: rgba(255, 255, 255, 0.681); */
-  background-color: rgba(255, 255, 255, 0.62);
+  background-color: rgba(255, 255, 255, 0.929);
   height: 55px;
   position: sticky;
-  /* border: 1px solid rgb(42, 165, 128); */
   top: 0;
   padding-top: 10px;
 }
 
 .middle-nav {
-  /* border: 2px solid black; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,11 +61,9 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* border: 1px solid rgb(230, 0, 255); */
   gap: 10px;
   padding: 0rem 1rem;
   font-size: 1.1rem;
-  /* margin-top: 15px; */
 }
 
 .list li {
@@ -109,7 +97,6 @@ table {
 }
 
 .myJamPage-container {
-  /* border: 2px solid #0db404; */
   background: url("./assets/myJamPage.jpg") no-repeat center bottom/cover;
 }
 
@@ -118,13 +105,10 @@ table {
 }
 
 .myJam-title {
-  /* border: 2px solid red; */
-  /* margin-top: 10px; */
   padding: 1rem 0rem;
   text-align: center;
 }
 .myJam-table {
-  /* border: 2px solid rgb(0, 183, 255); */
   width: 80%;
   margin: auto;
   position: relative;
@@ -133,22 +117,17 @@ table {
 .update-btn {
   position: absolute;
   left: 15px;
-  /* padding-bottom: 10px; */
-  /* bpadding-bottom: 0; */
 }
 
 .delete-btn {
   position: absolute;
   right: 15px;
-  /* padding-bottom: 10px; */
-  /* top: 0px; */
 }
 
 .creatorName {
   cursor: pointer;
 }
 
-/* -------------------------------- */
 .btn {
   font-family: "Roboto", sans-serif;
   background: none;
@@ -175,7 +154,7 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url("./assets//homePage.jpg") center center/cover;
+  background: url("./assets//homePage2.jpg") center center/cover;
 }
 
 .homePage div {
@@ -193,26 +172,15 @@ a {
 .search-page-container {
   display: flex;
   justify-content: space-between;
-  /* border: 3px solid rgba(216, 112, 147, 0.615); */
-  /* height: 550px; */
-  background: url("./assets/searchPage.jpg") no-repeat center center/cover;
+  background: url("./assets/searchPage4.jpg") no-repeat center bottom/cover;
   padding: 2rem 5rem;
-
-  /* align-items: center; */
 }
 
-/* .location {
-  background: url("./assets/searchPageLocation.jpg") no-repeat center
-    bottom/cover;
-} */
-
 .map-container {
-  /* border: 2px solid rgb(238, 50, 81); */
   display: flex;
   justify-content: center;
   align-items: center;
   margin: auto;
-  /* background-color: #333; */
   width: 1200px;
 }
 
@@ -250,10 +218,6 @@ a {
   to {
     transform: rotate(1turn);
   }
-}
-
-.form-container {
-  /* border: 1px solid red; */
 }
 
 .form {
@@ -300,7 +264,6 @@ h3 {
   margin: auto;
   background-color: rgba(255, 255, 255, 0.84);
   border-radius: 15px;
-  /* width: 450px; */
   height: 100%;
   padding: 10px;
   border: 1px solid white;
@@ -347,7 +310,6 @@ h3 {
   border: 0;
   font-size: 0.9rem;
   border-bottom: 2px solid gray;
-  /* padding: 15px 0 0; */
   width: 60%;
   line-height: 2rem;
   background: none;
@@ -360,18 +322,6 @@ h3 {
 
 .input-distance-span {
   font-size: 15px;
-}
-
-/* -------------------------------- */
-
-table caption {
-  /* font-size: 1.5em;
-  margin: 0.5em 0 0.75em; */
-}
-
-.user-contact-card {
-  /* background-color: rgba(255, 255, 255, 0.84); */
-  /* border: 1px solid blue; */
 }
 
 .cards-container {
@@ -387,7 +337,6 @@ table caption {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
   padding-top: 2rem;
   background-color: rgba(255, 255, 255, 0.84);
   border-radius: 15px;
@@ -395,7 +344,6 @@ table caption {
   height: 400px;
   border: 1px solid white;
   box-shadow: rgba(149, 157, 165, 0.162) 0px 8px 24px;
-  /* border: 2px solid red; */
 }
 
 .user-card-title {
@@ -426,12 +374,10 @@ table caption {
 }
 
 .cards-items-container {
-  /* border: 2px solid red; */
   height: 260px;
   padding-top: 2rem;
 }
 
-/* -------------------------- */
 table tr {
   background-color: #f8f8f89a;
   border: 1px solid #ddd;
@@ -450,7 +396,6 @@ table th {
   text-transform: uppercase;
 }
 
-/* ------------------------ */
 .TableContainer {
   overflow-x: auto;
   max-width: 100%;
@@ -490,10 +435,6 @@ table th {
   }
 
   table td::before {
-    /*
-    * aria-label has no advantage, it won't be read inside a table
-    content: attr(aria-label);
-    */
     content: attr(data-label);
     float: left;
     font-weight: bold;
@@ -503,12 +444,4 @@ table th {
   table td:last-child {
     border-bottom: 0;
   }
-
-  /* .MuiTableCell-root {
-    font-size: 12px;
-  } */
-
-  /* .MuiTableCell-root:nth-of-type(3) {
-    display: none;
-  } */
 }

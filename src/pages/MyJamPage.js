@@ -51,6 +51,10 @@ function MyJamPage() {
     getCurrentUser();
   }, [jamSessionId]);
 
+  const navigateToHomePage = () => {
+    navigate("/");
+  };
+
   const getOneJamDataByName = async (jamSessionName) => {
     try {
       const response = await api.get(`/jam-sessions/name/${jamSessionName}`);
@@ -119,8 +123,9 @@ function MyJamPage() {
           <p className="myJamPage-message">
             You have to LOGIN / REGISTER and Create a jam session In order to
             see it on that page
-            <button className="btn">Click Here to Register</button>
-            <button className="btn login-btn">Click Here to Login</button>
+            <button className="btn" onClick={() => navigateToHomePage()}>
+              Come Back To Home Page
+            </button>
           </p>
         </>
       )}
