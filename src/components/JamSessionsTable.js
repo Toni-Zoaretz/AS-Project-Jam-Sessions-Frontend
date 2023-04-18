@@ -50,7 +50,7 @@ function JamSessionsTable() {
   return (
     <div>
       <div className="search-jam-title">
-        <h3>Here You Can Filter by Date or Location</h3>
+        <h3>All Jam Sessions</h3>
       </div>
       <div className="search-page-container">
         <div className="form-container">

@@ -77,7 +77,7 @@ function UserFormRegister({ setShowForm }) {
           onChange={handleChange}
         ></input>
         <input
-          type="text"
+          type="password"
           name="password"
           value={userRegisterFormData.password}
           placeholder="enter password"
