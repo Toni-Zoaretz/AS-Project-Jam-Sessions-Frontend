@@ -26,8 +26,6 @@ const UserContextProvider = ({ children }) => {
     try {
       const response = await api.get("/jam-user");
       setAllUsers(response.data);
-      console.log(response.data);
-      console.log(response.data[response.data.length - 1]);
       setCurrentUser(response.data[response.data.length - 1]);
     } catch (error) {
       console.error("error");
@@ -37,7 +35,6 @@ const UserContextProvider = ({ children }) => {
   const getUserContactInfoByName = async (userName) => {
     try {
       const response = await api.get(`/jam-user/name/${userName}`);
-      console.log(response.data);
       setUserContactCard(true);
       setUserContactInfo(response.data);
     } catch (error) {

@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import api from "../api/api.js";
 import { FaInfoCircle } from "react-icons/fa";
 import CustomizedTables from "../components/CustomizedTables.js";

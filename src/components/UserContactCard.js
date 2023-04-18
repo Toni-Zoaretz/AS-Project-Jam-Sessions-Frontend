@@ -3,7 +3,6 @@ import { BsWhatsapp } from "react-icons/bs";
 
 function UserContactCard() {
   const { userContactInfo } = useUserGlobalContext();
-  console.log(userContactInfo);
 
   return (
     <div className="cards-container">

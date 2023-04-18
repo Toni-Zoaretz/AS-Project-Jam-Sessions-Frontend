@@ -22,9 +22,8 @@ function MyJamPage() {
       setAllJamSessions((prevSessions) =>
         prevSessions.filter((session) => session._id !== jamSessionId)
       );
+
       const response = await api.get(`/jam-user/${userId}`);
-      console.log(response.data);
-      console.log("😊 The Respond above in the Current User from Delete");
       setCurrentUser(response.data);
     } catch (error) {
       console.log(error);
@@ -34,8 +33,6 @@ function MyJamPage() {
   const getOneJamDataByName = async (jamSessionName) => {
     try {
       const response = await api.get(`/jam-sessions/name/${jamSessionName}`);
-      console.log(response.data._id);
-      console.log(response.data._id + "😍");
       setUpdateFormData(true);
       setJamSessionId(response.data._id);
       setJamSessionFormData({
@@ -44,7 +41,6 @@ function MyJamPage() {
         streetName: response.data.location.street.split(" ")[1],
         streetNumber: response.data.location.street.split(" ")[0],
         cityName: response.data.location.city,
-        // zipcode: response.data.location.zipcode,
         countryName: response.data.location.country,
         date: response.data.date.split("T")[0],
       });
@@ -52,9 +48,6 @@ function MyJamPage() {
       console.error(error);
     }
   };
-
-  console.log(currentUser);
-  console.log("💙💙💙 The User above its the Current User for this page");
 
   return (
     <div className="page myJamPage-container">

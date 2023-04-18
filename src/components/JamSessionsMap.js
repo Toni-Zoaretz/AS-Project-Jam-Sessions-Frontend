@@ -30,7 +30,6 @@ function JamSessionMap() {
   const filterByLocation = async (event) => {
     event.preventDefault();
     if (filterButton) {
-      console.log("fuck!");
       getAllJamSessions();
       setLocation({
         zipCode: "",

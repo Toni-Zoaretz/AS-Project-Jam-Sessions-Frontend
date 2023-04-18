@@ -26,7 +26,6 @@ const JamContextProvider = ({ children }) => {
     streetNumber: "",
     cityName: "",
     countryName: "",
-    // zipcode: "",
     date: "",
   });
 

@@ -1,6 +1,5 @@
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import JamFormPage from "./pages/JamFormPage";
 import SearchPage from "./pages/SearchPage";

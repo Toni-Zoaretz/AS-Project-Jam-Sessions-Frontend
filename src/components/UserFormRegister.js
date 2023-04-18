@@ -31,7 +31,6 @@ function UserFormRegister({ setShowForm }) {
       userRegisterFormData.email,
       setErrorMessage
     );
-
     try {
       await api.post("/jam-user", {
         name: userRegisterFormData.name,

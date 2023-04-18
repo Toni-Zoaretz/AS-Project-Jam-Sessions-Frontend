@@ -13,9 +13,7 @@ function JamSessionForm() {
     setUpdateFormData,
   } = useJamSessionGlobalContext();
 
-  // ----------------------------------------------------------------
-  const { setCurrentUser, currentUser } = useUserGlobalContext();
-  // ----------------------------------------------------------------
+  const { setCurrentUser } = useUserGlobalContext();
 
   const { userId } = useParams();
 
@@ -33,7 +31,7 @@ function JamSessionForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const address = `${jamSessionFormData.streetNumber} ${jamSessionFormData.streetName} St, ${jamSessionFormData.cityName}, ${jamSessionFormData.countryName}`;
-    // const address = `${jamSessionFormData.streetNumber} ${jamSessionFormData.streetName} St, ${jamSessionFormData.cityName}, ${jamSessionFormData.zipcode}, ${jamSessionFormData.countryName}`;
+
     try {
       if (jamSessionId) {
         await api.put(`jam-sessions/${jamSessionId}`, {
@@ -51,14 +49,8 @@ function JamSessionForm() {
           date: jamSessionFormData.date,
         });
       }
-      // -------------------------
       const response = await api.get(`/jam-user/${userId}`);
-      console.log(response.data);
-      console.log(
-        "😊 The Respond above in the Current User from Jam Form Page"
-      );
       setCurrentUser(response.data);
-      // -------------------------
     } catch (error) {
       console.error(error);
     }
@@ -71,7 +63,6 @@ function JamSessionForm() {
       streetNumber: "",
       cityName: "",
       countryName: "",
-      // zipcode: "",
       date: "",
     });
   };
@@ -112,13 +103,6 @@ function JamSessionForm() {
           placeholder="St Number"
           onChange={handleChange}
         ></input>
-        {/* <input
-          type="number"
-          name="zipcode"
-          value={jamSessionFormData.zipcode}
-          placeholder="Zip Code"
-          onChange={handleChange}
-        ></input> */}
         <input
           type="text"
           name="cityName"

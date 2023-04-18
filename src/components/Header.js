@@ -11,6 +11,7 @@ import { useJamSessionGlobalContext } from "../context/jamContext";
 function Header() {
   const { currentUser, setCurrentUser, setErrorMessage } =
     useUserGlobalContext();
+
   const { jamSessionId } = useJamSessionGlobalContext();
 
   const navigate = useNavigate();
