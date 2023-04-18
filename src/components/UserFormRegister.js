@@ -33,7 +33,7 @@ function UserFormRegister({ setShowForm }) {
     );
 
     try {
-      const response = await api.post("/jam-user", {
+      await api.post("/jam-user", {
         name: userRegisterFormData.name,
         phoneNumber: userRegisterFormData.phoneNumber,
         email: userRegisterFormData.email,
