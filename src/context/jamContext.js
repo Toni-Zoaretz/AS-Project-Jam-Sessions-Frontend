@@ -5,6 +5,7 @@ const JamSessionContext = createContext();
 const JamContextProvider = ({ children }) => {
   const [updateFormData, setUpdateFormData] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [filterButton, setFilterButton] = useState(false);
   const [allJamSessions, setAllJamSessions] = useState([]);
   const [jamSessionId, setJamSessionId] = useState(null);
 
@@ -17,6 +18,7 @@ const JamContextProvider = ({ children }) => {
     from: "",
     to: "",
   });
+
   const [jamSessionFormData, setJamSessionFormData] = useState({
     jamSessionName: "",
     instruments: "",
@@ -61,6 +63,8 @@ const JamContextProvider = ({ children }) => {
         setUpdateFormData,
         isLoading,
         setIsLoading,
+        filterButton,
+        setFilterButton,
       }}
     >
       {children}

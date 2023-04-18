@@ -5,8 +5,14 @@ import UserContactCard from "../components/UserContactCard";
 import { FaInfoCircle } from "react-icons/fa";
 
 function JamSessionMap() {
-  const { location, setLocation, setAllJamSessions } =
-    useJamSessionGlobalContext();
+  const {
+    location,
+    setLocation,
+    setAllJamSessions,
+    filterButton,
+    setFilterButton,
+    getAllJamSessions,
+  } = useJamSessionGlobalContext();
 
   const { userContactCard } = useUserGlobalContext();
 
@@ -21,13 +27,23 @@ function JamSessionMap() {
     });
   }
 
-  const handleSubmit = async (event) => {
+  const filterByLocation = async (event) => {
     event.preventDefault();
+    if (filterButton) {
+      console.log("fuck!");
+      getAllJamSessions();
+      setLocation({
+        zipCode: "",
+        distance: "",
+      });
+      setFilterButton(false);
+      return;
+    }
     try {
       const response = await api.get(
         `/jam-sessions/radius/${location.zipCode}/${location.distance}`
       );
-      console.log(response.data.data);
+      setFilterButton(true);
       setAllJamSessions(response.data.data);
     } catch (error) {
       console.log(error);
@@ -36,7 +52,7 @@ function JamSessionMap() {
   return (
     <div className="search-page-container" id="location-section">
       <div className="form-container">
-        <form onSubmit={handleSubmit} className="filter-form">
+        <form onSubmit={filterByLocation} className="filter-form">
           <span className="filter-title">Filter By Location</span>
           <div className="filter-field">
             <span>Enter Your Zip Code:</span>
@@ -60,7 +76,7 @@ function JamSessionMap() {
             ></input>
           </div>
           <button type="submit" className="btn filter-btn">
-            Filter
+            {filterButton ? "Remove Filter" : "Filter"}
           </button>
           <p className="info-text">
             <FaInfoCircle />

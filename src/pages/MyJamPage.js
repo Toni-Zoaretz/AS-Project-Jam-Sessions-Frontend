@@ -61,44 +61,55 @@ function MyJamPage() {
       <div className="myJam-title">
         <h3>My Jam`s</h3>
       </div>
-      <div className="myJam-table">
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Jam Session Name</th>
-              <th scope="col">Jam Session Address</th>
-              <th scope="col">Jam Instruments</th>
-              <th scope="col">Jam Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentUser?.jamSession_id.map((jam, jamIndex) => (
-              <tr key={jamIndex}>
-                <td data-label="Jam Session Name">
-                  <button
-                    className="btn myJam-btn"
-                    onClick={() => getOneJamDataByName(jam.jamSessionName)}
-                  >
-                    Update
-                  </button>
-                  {jam.jamSessionName}
-                  <button
-                    className="btn myJam-btn"
-                    onClick={() => deleteJamSession(jam._id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-                <td data-label="Jam Session Address">
-                  {jam.location.formattedAddress}
-                </td>
-                <td data-label="Jam Instruments">{jam.instruments}</td>
-                <td data-label="Jam Date">{formatTimestamp(jam.date)}</td>
+      {currentUser.length !== 0 ? (
+        <div className="myJam-table">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Jam Session Name</th>
+                <th scope="col">Jam Session Address</th>
+                <th scope="col">Jam Instruments</th>
+                <th scope="col">Jam Date</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {currentUser?.jamSession_id.map((jam, jamIndex) => (
+                <tr key={jamIndex}>
+                  <td data-label="Jam Session Name">
+                    <button
+                      className="btn myJam-btn"
+                      onClick={() => getOneJamDataByName(jam.jamSessionName)}
+                    >
+                      Update
+                    </button>
+                    {jam.jamSessionName}
+                    <button
+                      className="btn myJam-btn"
+                      onClick={() => deleteJamSession(jam._id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                  <td data-label="Jam Session Address">
+                    {jam.location.formattedAddress}
+                  </td>
+                  <td data-label="Jam Instruments">{jam.instruments}</td>
+                  <td data-label="Jam Date">{formatTimestamp(jam.date)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <>
+          <p className="myJamPage-message">
+            You have to LOGIN / REGISTER and Create a jam session In order to
+            see it on that page
+            <button className="btn">Click Here to Register</button>
+            <button className="btn login-btn">Click Here to Login</button>
+          </p>
+        </>
+      )}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import api from "../api/api.js";
 import { FaInfoCircle } from "react-icons/fa";
 import CustomizedTables from "../components/CustomizedTables.js";
@@ -10,8 +10,16 @@ import UserContactCard from "../components/UserContactCard";
 function JamSessionsTable() {
   const columns = ["Jam Session Name", "Creator", "Date", "Address"];
 
-  const { dates, setDates, allJamSessions, setAllJamSessions, isLoading } =
-    useJamSessionGlobalContext();
+  const {
+    dates,
+    setDates,
+    allJamSessions,
+    setAllJamSessions,
+    isLoading,
+    filterButton,
+    setFilterButton,
+    getAllJamSessions,
+  } = useJamSessionGlobalContext();
 
   const { getUserContactInfoByName, userContactCard } = useUserGlobalContext();
 
@@ -34,13 +42,20 @@ function JamSessionsTable() {
     });
   }
 
-  const handleSubmit = async (event) => {
-    console.log("form submitted");
+  const filterByDate = async (event) => {
     event.preventDefault();
-    console.log(dates.from, dates.to);
+    if (filterButton) {
+      getAllJamSessions();
+      setDates({
+        from: "",
+        to: "",
+      });
+      setFilterButton(false);
+      return;
+    }
     try {
       const response = await api.get(`/jam-sessions/${dates.from}/${dates.to}`);
-      console.log(response.data.data);
+      setFilterButton(true);
       setAllJamSessions(response.data.data);
     } catch (error) {
       console.log(error);
@@ -54,7 +69,7 @@ function JamSessionsTable() {
       </div>
       <div className="search-page-container">
         <div className="form-container">
-          <form onSubmit={handleSubmit} className="filter-form">
+          <form onSubmit={filterByDate} className="filter-form">
             <span className="filter-title">Filter By Dates</span>
             <div className="filter-container">
               <div className="filter-field">
@@ -77,7 +92,7 @@ function JamSessionsTable() {
               </div>
             </div>
             <button type="submit" className="btn filter-btn">
-              Filter
+              {filterButton ? "Remove Filter" : "Filter"}
             </button>
             <a href="#location-section" className="btn">
               To Filter By Location Click Here

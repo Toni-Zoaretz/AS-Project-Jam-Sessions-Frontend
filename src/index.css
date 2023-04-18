@@ -25,6 +25,26 @@ h1 {
   /* margin-top: 5px; */
 }
 
+.myJamPage-message {
+  font-size: 1.2rem;
+  box-shadow: rgba(90, 91, 92, 0.202) 0px 8px 24px;
+  background-color: rgba(255, 255, 255, 0.779);
+  text-align: center;
+  width: 900px;
+  border-radius: 15px;
+  margin: auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.myJamPage-message .login-btn {
+  width: 170px;
+}
+
 .header {
   border-bottom: 2px solid rgba(117, 113, 113, 0.426);
   /* display: flex; */
