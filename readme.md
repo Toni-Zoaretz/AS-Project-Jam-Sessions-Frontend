@@ -22,15 +22,15 @@ https://jam-app-toni.netlify.app/
 
 ### Screenshots
 
-![Alt text](/src/assets/screenshot_1.png.PNG)
+![Alt text](/src/assets/screenshot_1.png)
 
-![plot](/src/assets/screenshot_2.png.PNG)
+![plot](/src/assets/screenshot_2.png)
 
-![plot](/src/assets//screenshot_3.png.PNG)
+![plot](/src/assets//screenshot_3.png)
 
-![plot](/src/assets/screenshot_4.png.PNG)
+![plot](/src/assets/screenshot_4.png)
 
-![plot](/src/assets/screenshot_5.png.PNG)
+![plot](/src/assets/screenshot_5.png)
 
 ### Deployment
 
