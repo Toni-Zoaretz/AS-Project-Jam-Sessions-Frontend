@@ -1,7 +1,7 @@
 # 🎸 Jam Session App
 
 I was given a task @AppleSeeds Bootcamp to make an MERN stack project includes CRUD functionality.<br>
-I decided to build Jam Session application that allows people to create and find jam sessions and contact with others who looking for jamming by Whatsapp.The user can filter his search by dates or by location.<br>
+I decided to build Jam Session application that allows people to create and find jam sessions and contact with others who looking for jamming by Whatsapp. The user can filter his search by dates or by location.<br>
 I implement the project using `HTML`,`CSS`,`JavaScript`,`React`.
 
 ### Project Link:
