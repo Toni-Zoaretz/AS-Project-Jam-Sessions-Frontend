@@ -1,7 +1,7 @@
 # 🎸 Jam Session App
 
 I was given a task @AppleSeeds Bootcamp to make an MERN stack project includes CRUD functionality.<br>
-I decided to build Jam Session application that allows people to create and find jam sessions and contact with others who looking for jamming by Whatsapp.The user can filter his search by dates or by location.<br>
+I decided to build Jam Session application that allows people to create and find jam sessions and contact with others who looking for jamming by Whatsapp. The user can filter his search by dates or by location.<br>
 I implement the project using `HTML`,`CSS`,`JavaScript`,`React`.
 
 ### Project Link:
@@ -22,15 +22,15 @@ https://jam-app-toni.netlify.app/
 
 ### Screenshots
 
-![Alt text](/src/assets/screenshot_1.png.PNG)
+![Alt text](/src/assets/screenshot_1.png)
 
-![plot](/src/assets/screenshot_2.png.PNG)
+![plot](/src/assets/screenshot_2.png)
 
-![plot](/src/assets//screenshot_3.png.PNG)
+![plot](/src/assets//screenshot_3.png)
 
-![plot](/src/assets/screenshot_4.png.PNG)
+![plot](/src/assets/screenshot_4.png)
 
-![plot](/src/assets/screenshot_5.png.PNG)
+![plot](/src/assets/screenshot_5.png)
 
 ### Deployment
 
