@@ -1,8 +1,8 @@
 import api from "../api/api";
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useJamSessionGlobalContext } from "../context/jamContext";
 import { useUserGlobalContext } from "../context/userContext";
+import Input from "./Input";
 
 import { useNavigate } from "react-router-dom";
 
@@ -73,6 +73,38 @@ function JamSessionForm() {
     navigate(`/my-jam/${currentUser.id}`);
   };
 
+  const inputs = [
+    {
+      type: "text",
+      name: "jamSessionName",
+      placeholder: "Jam Session Name",
+    },
+    {
+      type: "text",
+      name: "instruments",
+      placeholder: "Instruments",
+    },
+    {
+      type: "text",
+      name: "streetName",
+      placeholder: "St name",
+    },
+    {
+      type: "text",
+      name: "cityName",
+      placeholder: "City Name",
+    },
+    {
+      type: "text",
+      name: "countryName",
+      placeholder: "Country Name",
+    },
+    {
+      type: "date",
+      name: "date",
+    },
+  ];
+
   return (
     <div>
       <form className="form" onSubmit={handleSubmit}>
@@ -81,55 +113,14 @@ function JamSessionForm() {
             ? "Update Your Jam Session!"
             : "Create Your Own Jam Session!"}
         </h3>
-        <input
-          type="text"
-          name="jamSessionName"
-          value={jamSessionFormData.jamSessionName}
-          placeholder="Jam Session Name"
-          onChange={handleChange}
-        ></input>
-        <input
-          type="text"
-          name="instruments"
-          value={jamSessionFormData.instruments}
-          placeholder="instruments"
-          onChange={handleChange}
-        ></input>
-        <input
-          type="text"
-          name="streetName"
-          value={jamSessionFormData.streetName}
-          placeholder="St name"
-          onChange={handleChange}
-        ></input>
-        <input
-          type="number"
-          name="streetNumber"
-          value={jamSessionFormData.streetNumber}
-          placeholder="St Number"
-          onChange={handleChange}
-        ></input>
-        <input
-          type="text"
-          name="cityName"
-          value={jamSessionFormData.cityName}
-          placeholder="City Name"
-          onChange={handleChange}
-        ></input>
-        <input
-          type="text"
-          name="countryName"
-          value={jamSessionFormData.countryName}
-          placeholder="Country Name"
-          onChange={handleChange}
-        ></input>
-        <input
-          type="date"
-          name="date"
-          value={jamSessionFormData.date}
-          placeholder="Email"
-          onChange={handleChange}
-        ></input>
+        {inputs.map((inputElement, index) => (
+          <Input
+            {...inputElement}
+            key={index}
+            onChange={handleChange}
+            value={jamSessionFormData[inputElement.name]}
+          />
+        ))}
         <button className="btn" type="submit">
           {updateFormData ? "Update" : "Create"}
         </button>
