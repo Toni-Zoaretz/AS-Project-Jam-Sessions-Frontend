@@ -14,7 +14,7 @@ https://jam-app-toni.netlify.app/
 ☑ Axios<br>
 ☑ React Router<br>
 
-### Project Frontend Technologies:
+### Project Backend Technologies:
 
 ☑ Node.js<br>
 ☑ Mongodb<br>
